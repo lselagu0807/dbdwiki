@@ -1,0 +1,557 @@
+/* Importar fuente Roboto */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+/* 1. Contenedor principal */
+
+.dbd-carousel-container {
+    min-height: calc(100vh - 58px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 40px 20px;
+    transition: all 0.6s ease;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+/* 2. El área del arco */
+
+.arc-viewport {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+
+/* Desplazamiento del viewport cuando está en vista detallada */
+
+.arc-viewport.shifted {
+    transform: translateX(-30%) scale(0.8);
+}
+
+
+/* 3. Los Personajes */
+
+.killer-item {
+    position: absolute;
+    width: 200px;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+    z-index: 1;
+}
+
+
+/* Cuando el killer está seleccionado en vista detallada */
+
+.killer-item.is-selected {
+    transform: translateX(30px) translateY(100px) scale(1.6) !important;
+    /* Cambiamos de 100 a 200 para que esté por encima del overlay (150) */
+    z-index: 200 !important;
+    cursor: default;
+    filter: none !important;
+}
+
+
+/* Wrapper de la imagen */
+
+.portrait-wrapper {
+    width: 100%;
+    border-radius: 8px;
+    overflow: visible;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.portrait-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.killer-item.is-selected .portrait-wrapper img {
+    filter: brightness(1.2) !important;
+    /* Brillo nítido */
+    /* Eliminamos cualquier sombra acumulada */
+    box-shadow: none !important;
+}
+
+
+/* Imágenes no centrales más oscuras */
+
+.killer-item:not(.is-center):not(.is-selected) .portrait-wrapper img {
+    filter: brightness(0.8);
+}
+
+
+/* 4. Información del killer */
+
+.killer-info {
+    position: absolute;
+    bottom: -110px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    text-align: center;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.killer-info h5 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: none !important;
+    filter: none !important;
+}
+
+.killer-info small {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #999;
+    display: block;
+    text-shadow: none !important;
+    filter: none !important;
+}
+
+
+/* 5. NAVEGACIÓN */
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 350px;
+    width: 100%;
+    z-index: 100;
+    margin-top: 70px;
+    transition: opacity 0.3s ease;
+}
+
+.navigation.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* Estilo de botones */
+
+.nav-btn,
+.btn-outline-light {
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #dc3545;
+    color: white;
+    padding: 12px 30px;
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 30%;
+    min-width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-btn:hover,
+.btn-outline-light:hover {
+    background: #dc3545;
+    box-shadow: 0 0 20px rgba(220, 53, 69, 0.8);
+    transform: scale(1.1);
+}
+
+
+/* ========================================
+   OVERLAY Y VENTANA FLOTANTE - ESTILO DBD ORIGINAL
+   ======================================== */
+
+
+/* Overlay oscuro de fondo */
+
+.detail-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 150;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* Ventana modal flotante - Estilo DBD */
+
+.detail-modal {
+    position: fixed;
+    top: 50%;
+    right: -100%;
+    transform: translateY(-50%);
+    width: 620px;
+    max-height: 90vh;
+    background: linear-gradient(to bottom, rgba(30, 30, 30, 0.98), rgba(15, 15, 15, 0.98));
+    border-left: 3px solid #8B0000;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.9);
+    z-index: 200;
+    transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+}
+
+.detail-modal.active {
+    right: 0;
+}
+
+
+/* Header del modal - Estilo DBD */
+
+.modal-header {
+    background: linear-gradient(to bottom, rgba(139, 0, 0, 0.4), transparent);
+    padding: 30px 30px 20px 30px;
+    border-bottom: 1px solid rgba(139, 0, 0, 0.3);
+    position: relative;
+}
+
+.killer-title h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0 0 8px 0;
+    color: #ffffff;
+}
+
+.killer-title p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 0 0 4px 0;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.killer-title p strong {
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.killer-badges {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.badge-custom {
+    font-family: 'Roboto', sans-serif;
+    padding: 5px 12px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.badge-custom.bg-danger {
+    background: rgba(139, 0, 0, 0.6) !important;
+    border-color: rgba(139, 0, 0, 0.8);
+}
+
+.badge-custom.bg-secondary {
+    background: rgba(60, 60, 60, 0.6) !important;
+}
+
+.badge-custom.bg-warning {
+    background: rgba(180, 140, 0, 0.6) !important;
+}
+
+
+/* Botón cerrar del modal - Estilo DBD */
+
+.btn-close-modal {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 2.5rem;
+    line-height: 1;
+    padding: 0;
+    font-weight: 300;
+}
+
+.btn-close-modal:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+
+/* Body del modal */
+
+.modal-body {
+    padding: 0;
+    overflow-y: auto;
+    flex: 1;
+}
+
+
+/* Scrollbar personalizada - Estilo DBD */
+
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: rgba(139, 0, 0, 0.6);
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(139, 0, 0, 0.8);
+}
+
+
+/* Secciones de información - Estilo DBD */
+
+.info-section {
+    padding: 20px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.section-title {
+    font-family: 'Roboto', sans-serif;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    padding: 0;
+}
+
+.title-icon {
+    font-size: 1rem;
+}
+
+.section-content {
+    font-family: 'Roboto', sans-serif;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    font-size: 0.9rem;
+    font-weight: 300;
+    text-align: left;
+}
+
+
+/* Grid de características del killer - Estilo DBD */
+
+.characteristics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.characteristic-item {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0;
+    padding: 12px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.char-label {
+    font-family: 'Roboto', sans-serif;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.char-value {
+    font-family: 'Roboto', sans-serif;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+
+/* Contenedor de perks - Estilo DBD */
+
+.perks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.perk-box {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    border-left: 3px solid rgba(139, 0, 0, 0.6);
+    border-radius: 0;
+    padding: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    transition: all 0.2s ease;
+}
+
+.perk-box:hover {
+    background: rgba(0, 0, 0, 0.5);
+    border-left-color: rgba(139, 0, 0, 0.9);
+}
+
+.perk-image {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 0;
+    overflow: hidden;
+    border: 2px solid rgba(139, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.perk-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.perk-details {
+    flex: 1;
+}
+
+.perk-name {
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+}
+
+.perk-description {
+    font-family: 'Roboto', sans-serif;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    font-weight: 300;
+    margin: 0;
+}
+
+.loading-perks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .arc-viewport {
+        height: 400px;
+    }
+    .arc-viewport.shifted {
+        transform: translateX(-30%) scale(0.8);
+    }
+    .killer-item {
+        width: 150px;
+    }
+    .killer-item.is-selected {
+        transform: translateX(-150px) scale(1.4) !important;
+    }
+    .killer-info {
+        bottom: -80px;
+        width: 250px;
+    }
+    .killer-info h5 {
+        font-size: 1.2rem;
+    }
+    .navigation {
+        margin-top: 130px;
+        gap: 40px;
+    }
+    .nav-btn,
+    .btn-outline-light {
+        padding: 10px 20px;
+        font-size: 1.5rem;
+        min-width: 50px;
+    }
+    .detail-modal {
+        width: 100%;
+        right: -100%;
+    }
+    .detail-modal.active {
+        right: 0;
+    }
+    .characteristics-grid {
+        grid-template-columns: 1fr;
+    }
+    .perk-image {
+        width: 56px;
+        height: 56px;
+    }
+    .perk-name {
+        font-size: 0.9rem;
+    }
+    .perk-description {
+        font-size: 0.8rem;
+    }
+    .modal-header {
+        padding: 20px;
+    }
+    .killer-title h2 {
+        font-size: 1.6rem;
+    }
+    .info-section {
+        padding: 15px 20px;
+    }
+}

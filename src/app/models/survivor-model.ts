@@ -15,8 +15,8 @@ export interface SurvivorModel {
   perks_ids: number[];
   overview: string;
   backstory: string;
-  perks?: Perk[]; // Opcional porque puede que no siempre venga
-  story?: string; // Alias para backstory o overview
+  perks?: Perk[];
+  story?: string;
 }
 
 export interface Perk {
