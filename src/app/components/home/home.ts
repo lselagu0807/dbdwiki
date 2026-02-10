@@ -3,7 +3,9 @@ import { Service } from '../../services/service';
 @Component({
   selector: 'app-home',
   imports: [],
-  templateUrl: './home.html'
+  templateUrl: './home.html',
+  styleUrls: ['./home.css']
+
 })
 export class Home {
   survivors: any[] = [];
@@ -12,7 +14,7 @@ export class Home {
   perks_killer: any[] = [];
   addons: any[] = [];
 
-  constructor(private dbdService: Service) {}
+  constructor(private dbdService: Service) { }
 
   ngOnInit() {
     this.dbdService.getSurvivors().subscribe({

@@ -1,0 +1,124 @@
+/* 1. Contenedor principal: Centra todo el bloque en la pantalla */
+.dbd-carousel-container {
+    background-color: #000 !important;
+    min-height: calc(100vh - 58px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 40px 20px;
+}
+
+/* 2. El área del arco: Centra los personajes internamente */
+.arc-viewport {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 500px; /* Aumentado para dar espacio al texto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px; /* Espacio antes de los botones */
+}
+
+/* 3. Los Personajes */
+.survivor-item {
+    position: absolute;
+    width: 200px;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* 4. Información del superviviente (Nombre y Rol) */
+.survivor-info {
+    position: absolute;
+    bottom: -100px; /* Posicionado debajo de la imagen */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    text-align: center;
+    z-index: 10;
+}
+
+.survivor-info h5 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.survivor-info small {
+    font-size: 1rem;
+    color: #999;
+    display: block;
+}
+
+/* 5. NAVEGACIÓN: Centrada debajo del carrusel */
+.navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 350px;
+    width: 100%;
+    z-index: 100;
+    margin-top: 70px;
+}
+
+/* Estilo de botones */
+.nav-btn,
+.btn-outline-light {
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #dc3545;
+    color: white;
+    padding: 12px 30px;
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 4px;
+    min-width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-btn:hover,
+.btn-outline-light:hover {
+    background: #dc3545;
+    box-shadow: 0 0 20px rgba(220, 53, 69, 0.8);
+    transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .arc-viewport {
+        height: 400px;
+    }
+
+    .survivor-item {
+        width: 150px;
+    }
+
+    .survivor-info {
+        bottom: -80px;
+        width: 250px;
+    }
+
+    .survivor-info h5 {
+        font-size: 1.2rem;
+    }
+
+    .navigation {
+      margin-top: 130px;
+        gap: 40px;
+    }
+
+    .nav-btn,
+    .btn-outline-light {
+        padding: 10px 20px;
+        font-size: 1.5rem;
+        min-width: 50px;
+    }
+}

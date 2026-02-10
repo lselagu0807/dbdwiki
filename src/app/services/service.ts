@@ -13,7 +13,9 @@ export class Service {
   constructor(private http: HttpClient) { }
 
   getSurvivors(): Observable<any[]> {
-    return this.http.get<any[]>(this.url + "/survivor");
+    return this.http.get<any>(this.url + "/survivor").pipe(
+      map(res => res.data || []) // <--- Esto extrae los 31 supervivientes
+    );
   }
 
   getSurvivorPerksByCode(code: string): Observable<any[]> {

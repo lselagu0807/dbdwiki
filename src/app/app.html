@@ -1,1 +1,19 @@
-<router-outlet />
+<nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-danger sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-uppercase" routerLink="/">
+            <span class="text-danger">DBD</span> Wiki
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/survivors" routerLinkActive="active">Survivors</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>

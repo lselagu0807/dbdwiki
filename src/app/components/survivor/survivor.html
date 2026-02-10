@@ -1,0 +1,32 @@
+@if (survivors && survivors.length > 0) {
+<div class="dbd-carousel-container">
+  <div class="arc-viewport">
+    @for (item of visibleSurvivors; track item.data.code) {
+    <div class="survivor-item" [ngStyle]="getTransform(item.position)" [class.is-center]="item.position === 0"
+      (click)="rotate(item.position)">
+
+      <div class="portrait-wrapper shadow">
+        <img [src]="item.data.imgs.store" class="img-fluid" [alt]="item.data.name">
+      </div>
+
+      @if (item.position === 0) {
+      <div class="survivor-info text-center mt-2">
+        <h5 class="text-white text-uppercase mb-0 fw-bold">{{ item.data.name }}</h5>
+        <small class="text-secondary">{{ item.data.role }}</small>
+      </div>
+      }
+    </div>
+    }
+  </div>
+
+  <div class="navigation">
+    <button class="btn btn-outline-light btn-sm" (click)="rotate(1)">&#10094;</button>
+    <button class="btn btn-outline-light btn-sm" (click)="rotate(-1)">&#10095;</button>
+  </div>
+</div>
+} @else {
+<div class="text-center mt-5">
+  <div class="spinner-border text-danger" role="status"></div>
+  <p class="text-white mt-2">Cargando supervivientes...</p>
+</div>
+}
