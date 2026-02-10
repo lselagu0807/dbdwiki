@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-danger">
+<nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-danger sticky-top">
     <div class="container">
         <a class="navbar-brand fw-bold text-uppercase" href="#">
-            <span class="text-danger">DBD</span> Archive
+            <span class="text-danger">DBD</span> Wiki
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -18,9 +18,9 @@
 
             <form class="d-flex" role="search">
                 <div class="input-group">
-                    <input class="form-control bg-dark text-white border-secondary" type="search" placeholder="Buscar asesino, perk..." aria-label="Search">
-                    <button class="btn btn-outline-danger" type="submit">
-            <i class="bi bi-search"></i> Buscar
+                    <input class="form-control bg-dark text-white border-secondary" type="search" placeholder="Buscar en la niebla..." aria-label="Search">
+                    <button class="btn btn-outline-danger" type="button">
+            <i class="bi bi-search"></i>
           </button>
                 </div>
             </form>
@@ -29,19 +29,26 @@
 </nav>
 
 <header class="hero-section text-white d-flex align-items-center">
-    <video autoplay muted loop id="bg-video">
-        <source src="assets/video-background.mp4" type="video/mp4">
-        Tu navegador no soporta videos.
-    </video>
+
+
+    <img src="assets/video/tenor.gif" id="bg-video" alt="DBD Background">
 
     <div class="overlay"></div>
 
     <div class="container text-center content-hero">
-        <h1 class="display-2 fw-bold text-uppercase">La Niebla te espera</h1>
-        <p class="lead">Explora todos los personajes, habilidades y objetos de Dead by Daylight.</p>
-        <div class="mt-4">
-            <button class="btn btn-danger btn-lg me-2">Ver Killers</button>
-            <button class="btn btn-outline-light btn-lg">Ver Survivors</button>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="display-1 fw-bolder text-uppercase text-shadow">La Niebla te espera</h1>
+                <p class="lead fs-3 mb-4">Domina cada sacrificio. Explora personajes, habilidades y lore.</p>
+                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                    <button class="btn btn-danger btn-lg px-5 fw-bold text-uppercase rounded-0">
+            Ver Killers
+          </button>
+                    <button class="btn btn-outline-red btn-lg px-5 fw-bold text-uppercase rounded-0">
+            Ver Survivors
+          </button>
+                </div>
+            </div>
         </div>
     </div>
 </header>
