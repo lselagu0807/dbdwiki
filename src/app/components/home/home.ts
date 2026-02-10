@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { Service } from '../../services/service';
+import { HostListener } from '@angular/core';
+import { RouterLink, RouterLinkActive } from "@angular/router";
+
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 
@@ -15,6 +18,34 @@ export class Home {
   addons: any[] = [];
 
   constructor(private dbdService: Service) { }
+
+
+  // --- LÓGICA DE ANIMACIÓN AL HACER SCROLL ---
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const scroll = window.scrollY;
+    const video = document.getElementById('bg-video');
+    const overlay = document.querySelector('.overlay') as HTMLElement;
+    const reveals = document.querySelectorAll('.reveal');
+
+    // 1. Difuminar el GIF a negro total
+    if (video && overlay) {
+      // Aumentamos la opacidad del overlay negro según bajamos
+      const opacityValue = 0.6 + (scroll / 600);
+      overlay.style.background = `rgba(0, 0, 0, ${opacityValue > 1 ? 1 : opacityValue})`;
+      // Opcional: El video se desvanece
+      video.style.opacity = (1 - scroll / 800).toString();
+    }
+
+    // 2. Activar las casillas de información
+    reveals.forEach(el => {
+      const windowHeight = window.innerHeight;
+      const revealTop = el.getBoundingClientRect().top;
+      if (revealTop < windowHeight - 150) {
+        el.classList.add('active');
+      }
+    });
+  }
 
   ngOnInit() {
     this.dbdService.getSurvivors().subscribe({
