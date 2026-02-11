@@ -1,6 +1,6 @@
 <header class="hero-section text-white d-flex align-items-center">
     <!-- GIF animado (se desvanecerá al hacer scroll) -->
-    <img src="assets/video/gif-bg.gif" id="bg-video" alt="DBD Background">
+    <img src="assets/video/gif-bg.gif" id="bg-video" alt="DBD Background" class="mover">
 
     <!-- Imagen estática de fondo (se revelará cuando el GIF se desvanezca) -->
     <img src="/assets/image/home-bg-static.png" id="bg-static" alt="DBD Static Background">
@@ -13,21 +13,23 @@
                 <h1 class="display-1 fw-bolder text-uppercase text-shadow">La Niebla te espera</h1>
                 <p class="lead fs-3 mb-4">Domina cada sacrificio. Explora personajes, habilidades y lore.</p>
                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                    <button class="btn btn-danger btn-lg px-5 fw-bold text-uppercase rounded-0" routerLink="/killers" routerLinkActive="active">
-            Ver Killers
-          </button>
-                    <button class="btn btn-outline-red btn-lg px-5 fw-bold text-uppercase rounded-0" routerLink="/survivors" routerLinkActive="active">
-            Ver Survivors
-          </button>
-
+                    <button class="btn btn-danger btn-lg px-5 fw-bold text-uppercase rounded-0" routerLink="/killers"
+                        routerLinkActive="active">
+                        Ver Killers
+                    </button>
+                    <button class="btn btn-outline-red btn-lg px-5 fw-bold text-uppercase rounded-0"
+                        routerLink="/survivors" routerLinkActive="active">
+                        Ver Survivors
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<section class="info-section py-5 text-white">
-    <div class="container">
+
+<section class="info-section py-5 text-white mt-3">
+    <div class="container espaciado">
         <div class="row align-items-center mb-5 mt-5 reveal">
             <div class="col-lg-7 offset-lg-1">
                 <div class="ratio ratio-16x9 border border-secondary shadow-lg">
@@ -54,24 +56,40 @@
 
         <div class="row align-items-center mb-5 reveal">
             <div class="col-lg-7 offset-lg-1">
-                <div id="mapsCarousel" class="carousel slide border border-secondary shadow-lg" data-bs-ride="carousel" data-bs-interval="3000">
+                <div id="mapsCarousel" class="carousel slide border border-secondary shadow-lg" data-bs-ride="carousel"
+                    data-bs-interval="3000">
                     <!-- Indicadores -->
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
-                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
-                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
-                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="7" aria-label="Slide 8"></button>
-                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="8" aria-label="Slide 9"></button>
-                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="9" aria-label="Slide 10"></button>
-                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="10" aria-label="Slide 11"></button>
-                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="11" aria-label="Slide 12"></button>
-                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="12" aria-label="Slide 13"></button>
-                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="13" aria-label="Slide 14"></button>
-                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="14" aria-label="Slide 15"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="3"
+                            aria-label="Slide 4"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="4"
+                            aria-label="Slide 5"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="5"
+                            aria-label="Slide 6"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="6"
+                            aria-label="Slide 7"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="7"
+                            aria-label="Slide 8"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="8"
+                            aria-label="Slide 9"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="9"
+                            aria-label="Slide 10"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="10"
+                            aria-label="Slide 11"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="11"
+                            aria-label="Slide 12"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="12"
+                            aria-label="Slide 13"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="13"
+                            aria-label="Slide 14"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="14"
+                            aria-label="Slide 15"></button>
                     </div>
 
                     <!-- Slides -->
@@ -154,14 +172,16 @@
                     </div>
 
                     <!-- Controles -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#mapsCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-          </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#mapsCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Siguiente</span>
-          </button>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#mapsCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#mapsCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Siguiente</span>
+                    </button>
                 </div>
             </div>
             <div class="col-lg-4 ps-lg-5">
@@ -169,5 +189,55 @@
                 <p class="fs-5">Más de 15 reinos por conocer.</p>
             </div>
         </div>
+
+        <div class="row align-items-center flex-lg-row-reverse mb-5 reveal py-5">
+            <div class="col-lg-7">
+                <div class="ratio ratio-16x9 border border-secondary shadow-lg">
+                    <img src="assets/video/swf.gif" id="bg-video" alt="Killer">
+                </div>
+            </div>
+            <div class="col-lg-5 pe-lg-5">
+                <h2 class="display-4 fw-bold text-danger text-uppercase">Multijugador</h2>
+                <p class="fs-5">Juega con hasta 3 amigos. Crossplay entre todas las plataformas.</p>
+            </div>
+        </div>
     </div>
 </section>
+
+<footer class="footer-dbd py-5 text-white">
+    <div class="container text-center">
+        <div class="footer-section mb-4">
+            <p class="text-uppercase fw-bold small tracking-widest mb-4">Available On</p>
+            <div class="d-flex flex-wrap justify-content-center align-items-center gap-4 opacity-75">
+                <img src="assets/icons/steam.png" alt="Steam" class="platform-icon">
+                <img src="assets/icons/epic.png" alt="Epic" class="platform-icon">
+                <img src="assets/icons/windows.png" alt="Get it on Windows" class="platform-icon">
+                <img src="assets/icons/playstation.png" alt="PS5 PS4" class="platform-icon">
+                <img src="assets/icons/xbox.png" alt="Xbox" class="platform-icon">
+                <img src="assets/icons/switch.png" alt="Switch" class="platform-icon">
+            </div>
+        </div>
+
+        <hr class="footer-divider my-5">
+
+        <div class="footer-section mb-4">
+            <p class="text-uppercase fw-bold small tracking-widest mb-4">Join the Dead by Daylight Community</p>
+            <div class="d-flex justify-content-center gap-3 mb-4">
+                <a href="#" class="social-link"><i class="bi bi-youtube"></i></a>
+                <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="social-link"><i class="bi bi-twitter-x"></i></a>
+                <a href="#" class="social-link"><i class="bi bi-twitch"></i></a>
+                <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+            </div>
+            <img src="assets/image/dbd-logo-white.png" alt="Dead by Daylight" class="footer-logo mb-3">
+        </div>
+
+        <hr class="footer-divider my-5">
+
+        <div class="footer-section d-flex justify-content-center gap-2">
+            <img src="assets/icons/pegi18.png" alt="PEGI 18" class="rating-icon">
+            <img src="assets/icons/violence.png" alt="Violence" class="rating-icon">
+            <img src="assets/icons/purchases.png" alt="In-game purchases" class="rating-icon">
+        </div>
+    </div>
+</footer>

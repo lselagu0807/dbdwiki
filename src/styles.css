@@ -1,7 +1,7 @@
 /* Esto aplica a toda la página */
 body {
     background-color: #000000; /* Negro puro */
-    color: white;             /* Texto blanco por defecto */
+    color: white; /* Texto blanco por defecto */
     margin: 0;
     padding: 0;
 }
@@ -32,6 +32,9 @@ body {
     /* Lo manda al fondo de todo */
 }
 
+.mover {
+    transform: translateY(-7px);
+}
 
 /* La capa oscura para que el texto resalte (Overlay) */
 
@@ -51,7 +54,6 @@ body {
     z-index: 1;
     /* Asegura que el texto y botones estén por encima del overlay */
 }
-
 
 /* Efecto opcional: un poco de sombra al texto para que no se pierda */
 
