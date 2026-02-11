@@ -1,8 +1,10 @@
+import { LoadingService } from './../../services/loading';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Service } from '../../services/service';
 import { SurvivorModel } from '../../models/survivor-model';
 import { ChangeDetectorRef } from '@angular/core';
+import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-survivor',
@@ -19,16 +21,22 @@ export class Survivor {
   isDetailView = false;
   isLoadingPerks = false;
 
-  constructor(private dbdService: Service, private cd: ChangeDetectorRef) { }
+  constructor(private dbdService: Service, private cd: ChangeDetectorRef, private loadingService: LoadingService) { }
 
   ngOnInit() {
+    this.loadingService.show(); // Aparece el loader (fondo opaco)
+
     this.dbdService.getSurvivors().subscribe({
       next: (res) => {
         this.survivors = res;
         this.cd.detectChanges();
         console.log("Survivors: ", this.survivors);
+        this.loadingService.hide(); // Desaparece
       },
-      error: (err) => console.log('F en el chat:', err)
+      error: (err) => {
+        console.log('F en el chat:', err);
+        this.loadingService.hide(); // Desaparece
+      }
     })
   }
 

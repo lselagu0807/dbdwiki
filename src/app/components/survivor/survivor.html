@@ -5,9 +5,11 @@
   <!-- CARRUSEL -->
   <div class="arc-viewport" [class.shifted]="isDetailView">
     @for (item of visibleSurvivors; track item.data.code) {
-    <div class="survivor-item" [ngStyle]="getTransform(item.position)" [class.is-center]="item.position === 0"
-      [class.is-selected]="isDetailView && item.position === 0"
-      (click)="item.position === 0 && !isDetailView ? openDetail(item.data) : rotate(item.position)">
+    <div class="survivor-item"
+         [ngStyle]="getTransform(item.position)"
+         [class.is-center]="item.position === 0"
+         [class.is-selected]="isDetailView && item.position === 0"
+         (click)="item.position === 0 && !isDetailView ? openDetail(item.data) : rotate(item.position)">
 
       <div class="portrait-wrapper shadow">
         <img [src]="item.data.imgs.store" class="img-fluid" [alt]="item.data.name">
@@ -102,10 +104,5 @@
   </div>
   }
 
-</div>
-} @else {
-<div class="text-center mt-5">
-  <div class="spinner-border text-danger" role="status"></div>
-  <p class="text-white mt-2">Cargando supervivientes...</p>
 </div>
 }

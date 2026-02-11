@@ -1,0 +1,11 @@
+@if (isRendered() || isGlobalLoading()) {
+  <div class="dbd-loader-container"
+       [class.fade-out]="!isVisible() && !isGlobalLoading()"
+       [class.partial-load]="!isRendered() && isGlobalLoading()">
+
+    <div class="loader-content">
+      <img src="assets/video/dbd_loading.gif" alt="Cargando...">
+      <p class="loading-text">Entrando en la niebla...</p>
+    </div>
+  </div>
+}

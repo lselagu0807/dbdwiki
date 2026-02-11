@@ -8,7 +8,6 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
-
 })
 export class Home {
   survivors: any[] = [];
@@ -19,22 +18,22 @@ export class Home {
 
   constructor(private dbdService: Service) { }
 
-
-  // --- LÓGICA DE ANIMACIÓN AL HACER SCROLL ---
   @HostListener('window:scroll', [])
   onWindowScroll() {
     const scroll = window.scrollY;
-    const video = document.getElementById('bg-video');
+    const gifVideo = document.getElementById('bg-video');
     const overlay = document.querySelector('.overlay') as HTMLElement;
     const reveals = document.querySelectorAll('.reveal');
 
-    // 1. Difuminar el GIF a negro total
-    if (video && overlay) {
-      // Aumentamos la opacidad del overlay negro según bajamos
-      const opacityValue = 0.6 + (scroll / 600);
-      overlay.style.background = `rgba(0, 0, 0, ${opacityValue > 1 ? 1 : opacityValue})`;
-      // Opcional: El video se desvanece
-      video.style.opacity = (1 - scroll / 800).toString();
+    // 1. Desvanecer el GIF progresivamente
+    if (gifVideo && overlay) {
+      // El GIF se desvanece completamente al hacer scroll
+      const gifOpacity = Math.max(0, 1 - scroll / 600);
+      gifVideo.style.opacity = gifOpacity.toString();
+
+      // El overlay se oscurece progresivamente
+      const overlayOpacity = 0.6 + (scroll / 600);
+      overlay.style.background = `rgba(0, 0, 0, ${Math.min(overlayOpacity, 1)})`;
     }
 
     // 2. Activar las casillas de información
@@ -58,8 +57,10 @@ export class Home {
 
     this.dbdService.getKillers().subscribe({
       next: (res) => {
-        console.log('killers cargados: ', this.killers);
-      }
+        this.killers = res;
+        console.log('killers cargados:', this.killers);
+      },
+      error: (err) => console.log('F en el chat:', err)
     })
 
     this.dbdService.getSurvivorPerksByCode("dwightfairfield").subscribe({
@@ -86,5 +87,4 @@ export class Home {
       error: (err) => console.log('F en el chat:', err)
     });
   }
-
 }

@@ -1,93 +1,133 @@
-/* --- ESTILOS PARA LA SECCIÓN DE INFORMACIÓN --- */
-
-.info-section {
-    background-color: #000;
-    /* Fondo negro sólido para el empalme con el hero */
-    position: relative;
-    z-index: 2;
-    overflow: hidden;
-    /* Evita que el personaje desborde la página */
+/* --- HERO SECTION CON DOBLE FONDO --- */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #000;
 }
+
+/* Imagen estática de fondo (debajo) */
+#bg-static {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 1;
+}
+
+/* GIF animado (encima) */
+#bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Overlay oscuro */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+  transition: background 0.3s ease;
+}
+
+/* Contenido del hero */
+.content-hero {
+  position: relative;
+  z-index: 3;
+}
+
+.text-shadow {
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+}
+
+/* --- SECCIÓN DE INFORMACIÓN --- */
+.info-section {
+  background-image: url("/assets/image/fog.jpg");
+  background-repeat: no-repeat;
+  /* Cambiado a no-repeat para que no se duplique */
+  background-size: 100% 100%;
+  /* Cubre todo el área sin estirarse mal */
+  background-attachment: fixed;
+  /* ESTA ES LA CLAVE: la imagen no se mueve */
+  position: relative;
+  z-index: 4;
+  overflow: hidden;
+}
+
 
 
 /* Contenedor relativo para poder posicionar al Killer */
-
 .character-container {
-    position: relative;
+  position: relative;
 }
-
 
 /* Estilo del Personaje PNG (Trapper) */
-
 .character-png {
-    position: absolute;
-    bottom: -100px;
-    /* Lo baja un poco para que pise la siguiente sección */
-    right: -50px;
-    /* Lo saca ligeramente del margen para dar profundidad */
-    width: 450px;
-    /* Tamaño considerable para que impacte */
-    z-index: 10;
-    filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.4));
-    /* Brillo rojo siniestro */
-    pointer-events: none;
-    /* Permite hacer click en lo que haya detrás */
-    transition: transform 0.3s ease;
+  position: absolute;
+  bottom: -100px;
+  right: -50px;
+  width: 450px;
+  z-index: 10;
+  filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.4));
+  pointer-events: none;
+  transition: transform 0.3s ease;
 }
-
 
 /* Efecto Hover opcional para el personaje */
-
 .character-container:hover .character-png {
-    transform: scale(1.05) translateX(-10px);
+  transform: scale(1.05) translateX(-10px);
 }
 
-
 /* --- ANIMACIONES DE SCROLL (REVEAL) --- */
-
 .reveal {
-    opacity: 0;
-    transform: translateY(60px);
-    transition: all 0.8s ease-out;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s ease-out;
 }
 
 .reveal.active {
-    opacity: 1;
-    transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
-
-/* Estilo para los bordes de los videos (Estética DBD) */
-
+/* Estilo para los bordes de los videos/carrusel */
 .ratio {
-    border: 2px solid #333;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  border: 2px solid #333;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
-
-/* Botón personalizado que mencionaste antes */
-
+/* Botón personalizado */
 .btn-outline-red {
-    border: 2px solid #dc3545;
-    color: #fff;
-    transition: all 0.3s ease;
+  border: 2px solid #dc3545;
+  color: #fff;
+  transition: all 0.3s ease;
 }
 
 .btn-outline-red:hover {
-    background-color: #dc3545;
-    color: #000;
-    box-shadow: 0 0 15px rgba(220, 53, 69, 0.6);
+  background-color: #dc3545;
+  color: #000;
+  box-shadow: 0 0 15px rgba(220, 53, 69, 0.6);
 }
 
-
 /* Ajustes para móviles */
-
 @media (max-width: 991px) {
-    .character-png {
-        display: none !important;
-        /* Ocultar el PNG en tablets/móviles para no tapar texto */
-    }
-    .display-4 {
-        font-size: 2.5rem;
-    }
+  .character-png {
+    display: none !important;
+  }
+
+  .display-4 {
+    font-size: 2.5rem;
+  }
 }

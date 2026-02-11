@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Service } from '../../services/service';
 import { KillerData } from '../../models/killer-model';
 import { ChangeDetectorRef } from '@angular/core';
+import { LoadingService } from '../../services/loading';
 
 @Component({
   selector: 'app-killer',
@@ -19,17 +20,25 @@ export class Killer {
   isDetailView = false;
   isLoadingPerks = false;
 
-  constructor(private dbdService: Service, private cd: ChangeDetectorRef) { }
+  constructor(private dbdService: Service, private cd: ChangeDetectorRef, private loadingService: LoadingService) { }
 
   ngOnInit() {
+    this.loadingService.show(); // Aparece el loader (fondo opaco)
+
+
     this.dbdService.getKillers().subscribe({
       next: (res: any) => {
         // Asumiendo que la respuesta tiene el mismo formato que survivors
         this.killers = res.data || res;
         this.cd.detectChanges();
         console.log("Killers: ", this.killers);
+        this.loadingService.hide(); // Desaparece
+
       },
-      error: (err) => console.log('F en el chat:', err)
+      error: (err) => {
+        console.log('F en el chat:', err);
+        this.loadingService.hide(); // Desaparece
+      }
     })
   }
 

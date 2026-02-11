@@ -1,3 +1,6 @@
+/* Importar fuente Roboto */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
 /* 1. Contenedor principal */
 .dbd-carousel-container {
   min-height: calc(100vh - 58px);
@@ -10,6 +13,7 @@
   overflow: hidden;
   padding: 40px 20px;
   transition: all 0.6s ease;
+  font-family: 'Roboto', sans-serif;
 }
 
 /* 2. El área del arco */
@@ -25,10 +29,9 @@
   transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Desplazamiento del viewport cuando está en vista detallada - SIN BLUR */
+/* Desplazamiento del viewport cuando está en vista detallada */
 .arc-viewport.shifted {
   transform: translateX(-30%) scale(0.8);
-  /* NO aplicamos filter aquí para evitar difuminar TODO */
 }
 
 /* 3. Los Personajes */
@@ -40,13 +43,11 @@
   z-index: 1;
 }
 
-
 /* Cuando el superviviente está seleccionado en vista detallada */
 .survivor-item.is-selected {
   transform: translateX(30px) translateY(100px) scale(1.6) !important;
-  z-index: 100 !important;
+  z-index: 200 !important;
   cursor: default;
-  /* Aseguramos que NO tenga filter blur */
   filter: none !important;
 }
 
@@ -72,14 +73,14 @@
   filter: brightness(1.1) drop-shadow(0 0 15px rgb(45, 45, 45));
 }
 
-/* GLOW INTENSO en la imagen seleccionada en vista detallada */
 .survivor-item.is-selected .portrait-wrapper img {
-  filter: brightness(1.2) drop-shadow(0 0 25px rgb(35, 35, 35)) drop-shadow(0 0 50px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 75px rgba(0, 0, 0, 0.6)) !important;
+  filter: brightness(1.2) !important;
+  box-shadow: none !important;
 }
 
 /* Imágenes no centrales más oscuras */
 .survivor-item:not(.is-center):not(.is-selected) .portrait-wrapper img {
-  filter: brightness(0.4);
+  filter: brightness(0.8);
 }
 
 /* 4. Información del superviviente */
@@ -95,17 +96,20 @@
 }
 
 .survivor-info h5 {
+  font-family: 'Roboto', sans-serif;
   font-size: 1.5rem;
   margin-bottom: 5px;
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 700;
   color: #ffffff;
   text-shadow: none !important;
   filter: none !important;
 }
 
 .survivor-info small {
+  font-family: 'Roboto', sans-serif;
   font-size: 1rem;
+  font-weight: 300;
   color: #999;
   display: block;
   text-shadow: none !important;
@@ -154,208 +158,227 @@
 }
 
 /* ========================================
-   OVERLAY Y VENTANA FLOTANTE
+   OVERLAY Y VENTANA FLOTANTE - ESTILO DBD ORIGINAL
    ======================================== */
 
 /* Overlay oscuro de fondo */
-/* Overlay oscuro de fondo con barrido */
 .detail-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
+  background: rgba(0, 0, 0, 0);
   z-index: 150;
-  /* Usamos la misma lógica de entrada que el modal */
-  animation: slideFromRight 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-  animation-delay: 0.2;
+  animation: fadeIn 0.3s ease forwards;
 }
 
-@keyframes slideFromRight {
+@keyframes fadeIn {
   from {
-    transform: translateX(100%);
+    opacity: 0;
   }
-
   to {
-    transform: translateX(0);
-
+    opacity: 1;
   }
 }
 
-/* Ventana modal flotante */
-/* Ventana modal flotante actualizada */
+/* Ventana modal flotante - Estilo DBD */
 .detail-modal {
   position: fixed;
   top: 50%;
-  /* Aseguramos que empiece totalmente fuera de pantalla */
   right: -100%;
   transform: translateY(-50%);
-  width: 800px;
-  max-height: 85vh;
-  background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 100%);
-  border: 2px solid #dc3545;
-  border-radius: 15px;
-  box-shadow: -10px 0 50px rgba(220, 53, 69, 0.5),
-    0 0 100px rgba(0, 0, 0, 0.8);
+  width: 620px;
+  max-height: 90vh;
+  background: linear-gradient(to bottom, rgba(30, 30, 30, 0.98), rgba(15, 15, 15, 0.98));
+  border-left: 3px solid #8B0000;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.9);
   z-index: 200;
-  /* Sincronizamos la duración y el suavizado con el overlay */
-  transition: right 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  font-family: 'Roboto', sans-serif;
 }
 
 .detail-modal.active {
-  /* Posición final al entrar */
-  right: 40px;
-  transition-delay: 0.2s;
+  right: 0;
 }
 
-/* Header del modal */
+/* Header del modal - Estilo DBD */
 .modal-header {
-  background: linear-gradient(135deg, #dc3545 0%, #a71d2a 100%);
-  padding: 25px;
-  border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(to bottom, rgba(139, 0, 0, 0.4), transparent);
+  padding: 30px 30px 20px 30px;
+  border-bottom: 1px solid rgba(139, 0, 0, 0.3);
   position: relative;
 }
 
 .survivor-title h2 {
-  font-size: 1.8rem;
-  font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 8px 0;
+  color: #ffffff;
 }
 
 .survivor-title p {
-  font-size: 1.1rem;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin: 0 0 4px 0;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .survivor-badges {
   display: flex;
-  gap: 8px;
-  margin-top: 12px;
+  gap: 10px;
+  margin-top: 15px;
   flex-wrap: wrap;
 }
 
 .badge-custom {
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  padding: 5px 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
 }
 
-/* Botón cerrar del modal */
+.badge-custom.bg-danger {
+  background: rgba(139, 0, 0, 0.6) !important;
+  border-color: rgba(139, 0, 0, 0.8);
+}
+
+.badge-custom.bg-secondary {
+  background: rgba(60, 60, 60, 0.6) !important;
+}
+
+.badge-custom.bg-warning {
+  background: rgba(180, 140, 0, 0.6) !important;
+}
+
+/* Botón cerrar del modal - Estilo DBD */
 .btn-close-modal {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  background: rgba(0, 0, 0, 0.4);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
+  top: 25px;
+  right: 25px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  width: 35px;
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 2rem;
+  transition: all 0.2s ease;
+  font-size: 2.5rem;
   line-height: 1;
   padding: 0;
+  font-weight: 300;
 }
 
 .btn-close-modal:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: #fff;
-  transform: rotate(90deg) scale(1.1);
+  color: #ffffff;
+  transform: scale(1.1);
 }
 
 /* Body del modal */
 .modal-body {
-  padding: 25px;
+  padding: 0;
   overflow-y: auto;
   flex: 1;
 }
 
-/* Scrollbar personalizada */
+/* Scrollbar personalizada - Estilo DBD */
 .modal-body::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 .modal-body::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .modal-body::-webkit-scrollbar-thumb {
-  background: #dc3545;
-  border-radius: 10px;
+  background: rgba(139, 0, 0, 0.6);
 }
 
 .modal-body::-webkit-scrollbar-thumb:hover {
-  background: #c82333;
+  background: rgba(139, 0, 0, 0.8);
 }
 
-/* Secciones de información */
+/* Secciones de información - Estilo DBD */
 .info-section {
-  margin-bottom: 30px;
+  padding: 20px 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .section-title {
-  color: #dc3545;
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 1.5px;
   margin-bottom: 15px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  border-bottom: 2px solid rgba(220, 53, 69, 0.3);
-  padding-bottom: 10px;
+  gap: 8px;
+  border: none;
+  padding: 0;
 }
 
 .title-icon {
-  font-size: 1.4rem;
+  font-size: 1rem;
 }
 
 .section-content {
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.7;
-  font-size: 0.95rem;
-  text-align: justify;
+  font-family: 'Roboto', sans-serif;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  font-size: 0.9rem;
+  font-weight: 300;
+  text-align: left;
 }
 
-/* Contenedor de perks */
+/* Contenedor de perks - Estilo DBD */
 .perks-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
 }
 
 .perk-box {
-  background: rgba(220, 53, 69, 0.1);
-  border: 2px solid rgba(220, 53, 69, 0.3);
-  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(139, 0, 0, 0.3);
+  border-left: 3px solid rgba(139, 0, 0, 0.6);
+  border-radius: 0;
   padding: 15px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 15px;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+}
+
+.perk-box:hover {
+  background: rgba(0, 0, 0, 0.5);
+  border-left-color: rgba(139, 0, 0, 0.9);
 }
 
 .perk-image {
   flex-shrink: 0;
-  width: 80px;
-  height: 80px;
-  border-radius: 10px;
+  width: 64px;
+  height: 64px;
+  border-radius: 0;
   overflow: hidden;
-  border: 2px solid rgba(220, 53, 69, 0.5);
-  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(139, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .perk-image img {
@@ -369,18 +392,21 @@
 }
 
 .perk-name {
+  font-family: 'Roboto', sans-serif;
   color: #fff;
-  font-size: 1.1rem;
-  font-weight: bold;
+  font-size: 0.95rem;
+  font-weight: 700;
   text-transform: uppercase;
-  margin-bottom: 8px;
-  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
 }
 
 .perk-description {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-family: 'Roboto', sans-serif;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  font-weight: 300;
   margin: 0;
 }
 
@@ -431,24 +457,36 @@
   }
 
   .detail-modal {
-    width: 90%;
+    width: 100%;
     right: -100%;
   }
 
   .detail-modal.active {
-    right: 5%;
+    right: 0;
   }
 
   .perk-image {
-    width: 60px;
-    height: 60px;
+    width: 56px;
+    height: 56px;
   }
 
   .perk-name {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .perk-description {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+  }
+
+  .modal-header {
+    padding: 20px;
+  }
+
+  .survivor-title h2 {
+    font-size: 1.6rem;
+  }
+
+  .info-section {
+    padding: 15px 20px;
   }
 }
