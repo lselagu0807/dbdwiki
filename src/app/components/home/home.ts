@@ -6,7 +6,7 @@ import { Survivor } from "../survivor/survivor";
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, RouterLinkActive, Survivor],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })
