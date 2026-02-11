@@ -38,12 +38,10 @@
     width: 100%;
     height: 100%;
     /* Degradado que va de semi-transparente a negro sólido al final */
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.5) 0%,
-        rgba(0, 0, 0, 0.7) 70%,
-        rgba(0, 0, 0, 1) 100%
-    );
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.5) 0%,
+            rgba(0, 0, 0, 0.7) 70%,
+            rgba(0, 0, 0, 1) 100%);
     z-index: 2;
     transition: background 0.3s ease;
 }
@@ -55,7 +53,8 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 200px; /* Altura de la transición */
+    height: 200px;
+    /* Altura de la transición */
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
     z-index: 3;
     pointer-events: none;
@@ -97,15 +96,19 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 200px; /* Altura del degradado difuminado */
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 1) 0%,
-        /* Negro sólido arriba */ rgba(0, 0, 0, 0.9) 20%,
-        rgba(0, 0, 0, 0.7) 40%,
-        /* Semi-transparente */ rgba(0, 0, 0, 0.4) 60%,
-        /* Más transparente */ rgba(0, 0, 0, 0) 100% /* Totalmente transparente */
-    );
+    height: 200px;
+    /* Altura del degradado difuminado */
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 1) 0%,
+            /* Negro sólido arriba */
+            rgba(0, 0, 0, 0.9) 20%,
+            rgba(0, 0, 0, 0.7) 40%,
+            /* Semi-transparente */
+            rgba(0, 0, 0, 0.4) 60%,
+            /* Más transparente */
+            rgba(0, 0, 0, 0) 100%
+            /* Totalmente transparente */
+        );
     z-index: 1;
     pointer-events: none;
 }
@@ -171,9 +174,11 @@
 
 /* --- FOOTER ESTILO DBD --- */
 .footer-dbd {
-    background-color: #080808; /* Negro casi puro como la imagen */
+    background-color: #080808;
+    /* Negro casi puro como la imagen */
     border-top: 1px solid #dc3545;
-    font-family: 'Bebas Neue', sans-serif; /* O una fuente similar sans-serif */
+    font-family: 'Bebas Neue', sans-serif;
+    /* O una fuente similar sans-serif */
 }
 
 .tracking-widest {
@@ -190,9 +195,13 @@
 
 /* Iconos de Plataformas */
 .platform-icon {
-    height: 30px;
-    filter: brightness(0) invert(1); /* Hace que los logos sean blancos */
+    height: 50px;
     transition: opacity 0.3s ease;
+}
+
+.blanco {
+    filter: brightness(0) invert(1);
+    /* Hace que los logos sean blancos */
 }
 
 .platform-icon:hover {
@@ -201,8 +210,9 @@
 
 /* Redes Sociales */
 .social-link {
+    padding: .5em .5em .5em 0;
+    border-radius: 15px;
     color: white;
-    font-size: 1.5rem;
     text-decoration: none;
     opacity: 0.8;
     transition:
@@ -211,8 +221,9 @@
 }
 
 .social-link:hover {
-    color: #ff0000; /* Rojo DBD al pasar el ratón */
-    transform: scale(1.1);
+    background-color: #111010;
+    /* Rojo DBD al pasar el ratón */
+    transform: scale(1.05);
 }
 
 /* Logos y Ratings */
@@ -222,7 +233,8 @@
 }
 
 .rating-icon {
-    height: 60px; /* Tamaño para los iconos de PEGI */
+    height: 60px;
+    /* Tamaño para los iconos de PEGI */
 }
 
 /* Ajuste de opacidad general para coincidir con la captura */
