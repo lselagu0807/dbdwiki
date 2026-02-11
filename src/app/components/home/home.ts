@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { Service } from '../../services/service';
 import { HostListener } from '@angular/core';
 import { RouterLink, RouterLinkActive } from "@angular/router";
+import { Survivor } from "../survivor/survivor";
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, Survivor],
   templateUrl: './home.html',
   styleUrls: ['./home.css']
 })

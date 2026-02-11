@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+/* Contenedor alineado con el estilo del carrusel */
+
+.items-section-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    z-index: 10;
+    /* Asegura que esté por encima del video de fondo */
+}
+
+.section-header {
+    text-align: left;
+    margin-bottom: 40px;
+    border-left: 4px solid #8B0000;
+    padding-left: 20px;
+}
+
+.section-header h2 {
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.section-header p {
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+
+/* Grid de Objetos */
+
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 30px;
+}
+
+
+/* Estilo de Tarjeta inspirado en el Inventario de DBD */
+
+.item-card {
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.9), rgba(10, 10, 10, 0.95));
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.item-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(139, 0, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.item-icon-wrapper {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: radial-gradient(circle, rgba(139, 0, 0, 0.05) 0%, transparent 70%);
+}
+
+.item-icon {
+    width: 90px;
+    height: 90px;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+    transition: transform 0.3s ease;
+    z-index: 2;
+}
+
+.item-card:hover .item-icon {
+    transform: scale(1.1);
+}
+
+.item-info-footer {
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+.item-name {
+    display: block;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.item-type-label {
+    color: #888;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+}
+
+
+/* Clases de Rareza (Borde inferior como en el juego) */
+
+.rarity-common {
+    border-bottom: 4px solid #918e8e;
+}
+
+.rarity-uncommon {
+    border-bottom: 4px solid #1b6321;
+}
+
+.rarity-rare {
+    border-bottom: 4px solid #1a4d8a;
+}
+
+.rarity-very-rare {
+    border-bottom: 4px solid #601c7a;
+}
+
+.rarity-ultra-rare {
+    border-bottom: 4px solid #8B0000;
+}
+
+.rarity-event {
+    border-bottom: 4px solid #c26a1b;
+}
+
+.rarity-limited {
+    border-bottom: 4px solid #5cdaff;
+}
+
+
+/* Glow dinámico basado en rareza al hacer hover */
+
+.item-card:hover .rarity-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.1;
+    background: currentColor;
+    /* Heredará el color de la clase de rareza si se configura */
+}
+
+
+/* Estilos de Modal y Overlay (Copiados de tu survivor.css para consistencia total) */
+
+.description-text {
+    white-space: pre-line;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* REUTILIZACIÓN DE TUS CLASES DE MODAL */
+
+
+/* Se asume que las clases .detail-modal, .modal-header, .perk-box, etc., 
+   ya están en un archivo global o se copian aquí para que funcionen */
+
+@media (max-width: 768px) {
+    .items-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    .item-icon {
+        width: 70px;
+        height: 70px;
+    }
+}

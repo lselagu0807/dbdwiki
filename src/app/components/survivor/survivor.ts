@@ -5,11 +5,12 @@ import { Service } from '../../services/service';
 import { SurvivorModel } from '../../models/survivor-model';
 import { ChangeDetectorRef } from '@angular/core';
 import { timeout } from 'rxjs';
+import { Item } from "../item/item";
 
 @Component({
   selector: 'app-survivor',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, Item],
   templateUrl: './survivor.html',
   styleUrls: ['./survivor.css']
 })

@@ -1,176 +1,173 @@
 <header class="hero-section text-white d-flex align-items-center">
-  <!-- GIF animado (se desvanecerá al hacer scroll) -->
-  <img src="assets/video/gif-bg.gif" id="bg-video" alt="DBD Background">
+    <!-- GIF animado (se desvanecerá al hacer scroll) -->
+    <img src="assets/video/gif-bg.gif" id="bg-video" alt="DBD Background">
 
-  <!-- Imagen estática de fondo (se revelará cuando el GIF se desvanezca) -->
-  <img src="/assets/image/home-bg-static.png" id="bg-static" alt="DBD Static Background">
+    <!-- Imagen estática de fondo (se revelará cuando el GIF se desvanezca) -->
+    <img src="/assets/image/home-bg-static.png" id="bg-static" alt="DBD Static Background">
 
-  <div class="overlay"></div>
+    <div class="overlay"></div>
 
-  <div class="container text-center content-hero">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <h1 class="display-1 fw-bolder text-uppercase text-shadow">La Niebla te espera</h1>
-        <p class="lead fs-3 mb-4">Domina cada sacrificio. Explora personajes, habilidades y lore.</p>
-        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-          <button class="btn btn-danger btn-lg px-5 fw-bold text-uppercase rounded-0" routerLink="/killers"
-            routerLinkActive="active">
+    <div class="container text-center content-hero">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="display-1 fw-bolder text-uppercase text-shadow">La Niebla te espera</h1>
+                <p class="lead fs-3 mb-4">Domina cada sacrificio. Explora personajes, habilidades y lore.</p>
+                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                    <button class="btn btn-danger btn-lg px-5 fw-bold text-uppercase rounded-0" routerLink="/killers" routerLinkActive="active">
             Ver Killers
           </button>
-          <button class="btn btn-outline-red btn-lg px-5 fw-bold text-uppercase rounded-0" routerLink="/survivors"
-            routerLinkActive="active">
+                    <button class="btn btn-outline-red btn-lg px-5 fw-bold text-uppercase rounded-0" routerLink="/survivors" routerLinkActive="active">
             Ver Survivors
           </button>
+
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </header>
 
 <section class="info-section py-5 text-white">
-  <div class="container">
-    <div class="row align-items-center mb-5 reveal">
-      <div class="col-lg-7 offset-lg-1">
-        <div class="ratio ratio-16x9 border border-secondary shadow-lg">
-          <img src="assets/video/habilidades.gif" id="bg-video" alt="Habilidades">
+    <div class="container">
+        <div class="row align-items-center mb-5 mt-5 reveal">
+            <div class="col-lg-7 offset-lg-1">
+                <div class="ratio ratio-16x9 border border-secondary shadow-lg">
+                    <img src="assets/video/habilidades.gif" id="bg-video" alt="Habilidades">
+                </div>
+            </div>
+            <div class="col-lg-4 ps-lg-5">
+                <h2 class="display-4 fw-bold text-danger text-uppercase">El Ritual</h2>
+                <p class="fs-5">Escapa de las garras del asesino antes de que el Ente reclame tu alma.</p>
+            </div>
         </div>
-      </div>
-      <div class="col-lg-4 ps-lg-5">
-        <h2 class="display-4 fw-bold text-danger text-uppercase">El Ritual</h2>
-        <p class="fs-5">Escapa de las garras del asesino antes de que el Ente reclame tu alma.</p>
-      </div>
-    </div>
 
-    <div class="row align-items-center flex-lg-row-reverse mb-5 reveal py-5">
-      <div class="col-lg-7">
-        <div class="ratio ratio-16x9 border border-secondary shadow-lg">
-          <img src="assets/video/killer.gif" id="bg-video" alt="Killer">
+        <div class="row align-items-center flex-lg-row-reverse mb-5 reveal py-5">
+            <div class="col-lg-7">
+                <div class="ratio ratio-16x9 border border-secondary shadow-lg">
+                    <img src="assets/video/killer.gif" id="bg-video" alt="Killer">
+                </div>
+            </div>
+            <div class="col-lg-5 pe-lg-5">
+                <h2 class="display-4 fw-bold text-danger text-uppercase">Habilidades</h2>
+                <p class="fs-5">Cada personaje cuenta con tres perks únicas...</p>
+            </div>
         </div>
-      </div>
-      <div class="col-lg-5 pe-lg-5">
-        <h2 class="display-4 fw-bold text-danger text-uppercase">Habilidades</h2>
-        <p class="fs-5">Cada personaje cuenta con tres perks únicas...</p>
-      </div>
-    </div>
 
-    <div class="row align-items-center mb-5 reveal">
-      <div class="col-lg-7 offset-lg-1">
-        <div id="mapsCarousel" class="carousel slide border border-secondary shadow-lg" data-bs-ride="carousel"
-          data-bs-interval="3000">
-          <!-- Indicadores -->
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="0" class="active" aria-current="true"
-              aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-            <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
-            <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
-            <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
-            <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="7" aria-label="Slide 8"></button>
-            <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="8" aria-label="Slide 9"></button>
-            <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="9" aria-label="Slide 10"></button>
-            <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="10" aria-label="Slide 11"></button>
-            <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="11" aria-label="Slide 12"></button>
-            <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="12" aria-label="Slide 13"></button>
-            <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="13" aria-label="Slide 14"></button>
-            <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="14" aria-label="Slide 15"></button>
-          </div>
+        <div class="row align-items-center mb-5 reveal">
+            <div class="col-lg-7 offset-lg-1">
+                <div id="mapsCarousel" class="carousel slide border border-secondary shadow-lg" data-bs-ride="carousel" data-bs-interval="3000">
+                    <!-- Indicadores -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="7" aria-label="Slide 8"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="8" aria-label="Slide 9"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="9" aria-label="Slide 10"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="10" aria-label="Slide 11"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="11" aria-label="Slide 12"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="12" aria-label="Slide 13"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="13" aria-label="Slide 14"></button>
+                        <button type="button" data-bs-target="#mapsCarousel" data-bs-slide-to="14" aria-label="Slide 15"></button>
+                    </div>
 
-          <!-- Slides -->
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="ratio ratio-16x9">
-                <img src="assets/image/maps/map1.webp" class="d-block w-100" alt="Mapa 1">
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="ratio ratio-16x9">
-                <img src="assets/image/maps/map2.webp" class="d-block w-100" alt="Mapa 2">
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="ratio ratio-16x9">
-                <img src="assets/image/maps/map3.webp" class="d-block w-100" alt="Mapa 3">
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="ratio ratio-16x9">
-                <img src="assets/image/maps/map4.webp" class="d-block w-100" alt="Mapa 4">
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="ratio ratio-16x9">
-                <img src="assets/image/maps/map5.webp" class="d-block w-100" alt="Mapa 5">
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="ratio ratio-16x9">
-                <img src="assets/image/maps/map6.webp" class="d-block w-100" alt="Mapa 6">
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="ratio ratio-16x9">
-                <img src="assets/image/maps/map7.webp" class="d-block w-100" alt="Mapa 7">
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="ratio ratio-16x9">
-                <img src="assets/image/maps/map8.webp" class="d-block w-100" alt="Mapa 8">
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="ratio ratio-16x9">
-                <img src="assets/image/maps/map9.webp" class="d-block w-100" alt="Mapa 9">
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="ratio ratio-16x9">
-                <img src="assets/image/maps/map10.webp" class="d-block w-100" alt="Mapa 10">
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="ratio ratio-16x9">
-                <img src="assets/image/maps/map11.webp" class="d-block w-100" alt="Mapa 11">
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="ratio ratio-16x9">
-                <img src="assets/image/maps/map12.webp" class="d-block w-100" alt="Mapa 12">
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="ratio ratio-16x9">
-                <img src="assets/image/maps/map13.webp" class="d-block w-100" alt="Mapa 13">
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="ratio ratio-16x9">
-                <img src="assets/image/maps/map14.webp" class="d-block w-100" alt="Mapa 14">
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="ratio ratio-16x9">
-                <img src="assets/image/maps/map15.webp" class="d-block w-100" alt="Mapa 15">
-              </div>
-            </div>
-          </div>
+                    <!-- Slides -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="ratio ratio-16x9">
+                                <img src="assets/image/maps/map1.webp" class="d-block w-100" alt="Mapa 1">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="ratio ratio-16x9">
+                                <img src="assets/image/maps/map2.webp" class="d-block w-100" alt="Mapa 2">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="ratio ratio-16x9">
+                                <img src="assets/image/maps/map3.webp" class="d-block w-100" alt="Mapa 3">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="ratio ratio-16x9">
+                                <img src="assets/image/maps/map4.webp" class="d-block w-100" alt="Mapa 4">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="ratio ratio-16x9">
+                                <img src="assets/image/maps/map5.webp" class="d-block w-100" alt="Mapa 5">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="ratio ratio-16x9">
+                                <img src="assets/image/maps/map6.webp" class="d-block w-100" alt="Mapa 6">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="ratio ratio-16x9">
+                                <img src="assets/image/maps/map7.webp" class="d-block w-100" alt="Mapa 7">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="ratio ratio-16x9">
+                                <img src="assets/image/maps/map8.webp" class="d-block w-100" alt="Mapa 8">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="ratio ratio-16x9">
+                                <img src="assets/image/maps/map9.webp" class="d-block w-100" alt="Mapa 9">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="ratio ratio-16x9">
+                                <img src="assets/image/maps/map10.webp" class="d-block w-100" alt="Mapa 10">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="ratio ratio-16x9">
+                                <img src="assets/image/maps/map11.webp" class="d-block w-100" alt="Mapa 11">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="ratio ratio-16x9">
+                                <img src="assets/image/maps/map12.webp" class="d-block w-100" alt="Mapa 12">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="ratio ratio-16x9">
+                                <img src="assets/image/maps/map13.webp" class="d-block w-100" alt="Mapa 13">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="ratio ratio-16x9">
+                                <img src="assets/image/maps/map14.webp" class="d-block w-100" alt="Mapa 14">
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="ratio ratio-16x9">
+                                <img src="assets/image/maps/map15.webp" class="d-block w-100" alt="Mapa 15">
+                            </div>
+                        </div>
+                    </div>
 
-          <!-- Controles -->
-          <button class="carousel-control-prev" type="button" data-bs-target="#mapsCarousel" data-bs-slide="prev">
+                    <!-- Controles -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#mapsCarousel" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Anterior</span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#mapsCarousel" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#mapsCarousel" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Siguiente</span>
           </button>
+                </div>
+            </div>
+            <div class="col-lg-4 ps-lg-5">
+                <h2 class="display-4 fw-bold text-danger text-uppercase">Mapas</h2>
+                <p class="fs-5">Más de 15 reinos por conocer.</p>
+            </div>
         </div>
-      </div>
-      <div class="col-lg-4 ps-lg-5">
-        <h2 class="display-4 fw-bold text-danger text-uppercase">Mapas</h2>
-        <p class="fs-5">Más de 15 reinos por conocer.</p>
-      </div>
     </div>
-  </div>
 </section>
