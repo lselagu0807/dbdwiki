@@ -1,58 +1,43 @@
-#🔪 DBDWiki - La Niebla te espera 🌫️
-DBDWiki es una aplicación web interactiva diseñada para los fanáticos de Dead by Daylight. Explora el lore, domina las habilidades de los sobrevivientes y conoce a fondo a cada asesino para sobrevivir al Ritual del Ente.
+# 🔪 DBDWiki - La Niebla te espera 🌫️
 
-Este proyecto ha sido desarrollado con un enfoque en el rendimiento mediante el uso de formatos de imagen modernos y reactividad avanzada.
+> **Proyecto de diseño con API para fans de Dead by Daylight**
 
-✨ Características Principales
-🕵️ Explorador de Personajes: Información detallada sobre Killers y Survivors.
+![DBDWiki Preview](https://github.com/tu-usuario/dbdwiki/raw/main/src/assets/video/gif-bg.gif)
 
-📜 Lore & Habilidades: Consulta las 3 perks únicas de cada personaje y su trasfondo.
+## 📖 Descripción
+**DBDWiki** es una plataforma interactiva construida con **Angular** que permite a los usuarios explorar el oscuro universo de Dead by Daylight. El proyecto se enfoca en una experiencia de usuario fluida, utilizando técnicas de posicionamiento fijo para crear un efecto de profundidad con la niebla icónica del juego.
 
-🗺️ Galería de Reinos: Carrusel interactivo con más de 15 mapas icónicos optimizados en formato .webp.
+---
 
-⚡ Interfaz Reactiva: Implementación de Angular Signals para un estado de carga limpio y eficiente.
+## ✨ Características Principales
 
-🎬 Experiencia Inmersiva: Fondos dinámicos fijos (Parallax) y transiciones suaves con GIFs.
+* **⚡ Reactividad con Signals:** Implementación de `LoadingService` utilizando **Angular Signals** para gestionar estados de carga globales de forma limpia y eficiente.
+* **🖼️ Rendimiento Optimizado:** Uso intensivo de formatos **WebP** para los mapas, reduciendo drásticamente los tiempos de carga en el carrusel.
+* **🎭 Interfaz Inmersiva:** * Efectos de **Parallax** en las secciones de información.
+    * Transiciones dinámicas entre fondos animados (GIF) y estáticos al hacer scroll.
+* **📱 Diseño Responsivo:** Estructura basada en **Bootstrap 5** con un sistema de rejilla adaptable y componentes interactivos como el carrusel de mapas.
 
-🚀 Tecnologías Utilizadas
-Framework: Angular 18+ (Standalone Components & Signals).
+---
 
-Estilos: Bootstrap 5 para un diseño responsive y componentes de UI.
+## 🚀 Tecnologías
 
-Diseño: CSS3 avanzado con efectos de background-attachment: fixed y backdrop-filter.
+* **Framework:** Angular 18+ (Standalone Components).
+* **Estilos:** Bootstrap 5 & CSS Personalizado.
+* **Estado:** Angular Signals.
+* **Asset Management:** Optimización de multimedia para la web.
 
-Multimedia: Optimización masiva de imágenes a formato WebP para una carga ultrarrápida.
+---
 
-🛠️ Instalación y Desarrollo
-Sigue estos pasos para ejecutar el proyecto en tu máquina local:
+## 📂 Estructura del Proyecto
 
-Clona el repositorio:
+El código está organizado siguiendo las mejores prácticas de Angular:
 
-Bash
-git clone https://github.com/tu-usuario/dbdwiki.git
-Instala las dependencias:
-
-Bash
-npm install
-Inicia el servidor de desarrollo:
-
-Bash
-ng serve
-Abre tu navegador: Navega a http://localhost:4200/. El servidor se recargará automáticamente si cambias algún archivo fuente.
-
-📂 Estructura del Proyecto
-Plaintext
-src/
-├── app/
-│   ├── components/
-│   │   ├── home/      # Sección principal con carrusel de mapas
-│   │   ├── killer/    # Listado de asesinos
-│   │   └── loader/    # Componente de carga con Signals
-│   └── services/      # Lógica de API y LoadingService
-└── assets/
-    ├── image/         # Imágenes estáticas y mapas (.webp)
-    └── video/         # GIFs de fondo y habilidades
-👤 Autor
-Luis - Desarrollo Inicial y Diseño con API.
-
-Nota del Ente: "La muerte no es un escape". ¡Buena suerte en la niebla! 💀
+```text
+src/app/
+├── components/
+│   ├── home/      # Lógica del carrusel y efectos de fondo
+│   ├── killer/    # Listado y detalle de asesinos
+│   ├── survivor/  # Listado y detalle de sobrevivientes
+│   └── loader/    # Componente de carga reactivo
+├── services/      # Servicios de datos y carga global
+└── assets/        # Recursos multimedia (WebP, GIF, PNG)
