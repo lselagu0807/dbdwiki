@@ -27,6 +27,7 @@ export class Item implements OnInit {
 
   ngOnInit() {
     this.fetchItems();
+    console.log("a");
   }
 
   fetchItems() {
