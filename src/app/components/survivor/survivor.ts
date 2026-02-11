@@ -6,11 +6,12 @@ import { SurvivorModel } from '../../models/survivor-model';
 import { ChangeDetectorRef } from '@angular/core';
 import { timeout } from 'rxjs';
 import { Item } from "../item/item";
+import { PerksComponent } from '../perk/perk';
 
 @Component({
   selector: 'app-survivor',
   standalone: true,
-  imports: [CommonModule, Item],
+  imports: [CommonModule, PerksComponent  ],
   templateUrl: './survivor.html',
   styleUrls: ['./survivor.css']
 })

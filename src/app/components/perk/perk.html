@@ -1,1 +1,80 @@
-<p>perk works!</p>
+<div class="perks-container">
+    <div class="perks-header">
+        <h2 class="text-white text-uppercase fw-bold">Perks de los Survivors</h2>
+    </div>
+
+    <div class="perks-controls">
+        <div class="search-box">
+            <input type="text" [(ngModel)]="searchTerm" (input)="filterPerks()" placeholder="Buscar por perk, descripción o survivor..." class="search-input" aria-label="Buscar perks" /> @if (searchTerm) {
+            <button class="clear-search" (click)="clearSearch()" aria-label="Limpiar búsqueda">
+          &times;
+        </button> }
+        </div>
+    </div>
+
+    @if (loading) {
+    <div class="loader-container">
+        <div class="spinner-border spinner-border-lg text-danger" role="status"></div>
+        <p class="text-white mt-3">Invocando habilidades del Entity...</p>
+    </div>
+    } @else if (filteredPerks.length === 0 && searchTerm) {
+    <div class="no-results">
+        <div class="blood-splatter"></div>
+        <p class="text-white-50">No se encontraron habilidades con "<strong>{{ searchTerm }}</strong>"</p>
+        <button class="btn-reset" (click)="clearSearch()">Ver todos los perks</button>
+    </div>
+    } @else if (filteredPerks.length === 0) {
+    <div class="no-results">
+        <p class="text-white-50">No hay perks disponibles en este momento</p>
+    </div>
+    } @else {
+    <div class="perks-grid">
+        @for (perk of getCurrentPagePerks(); track perk.id) {
+        <div class="perk-card" (click)="viewPerkDetails(perk)" role="button" tabindex="0">
+            <div class="perk-diamond-frame">
+                <div class="diamond-inner">
+                    <img [src]="perk.icon" [alt]="perk.name" class="perk-img">
+                    <div class="perk-shine"></div>
+                    <div class="perk-glow-effect"></div>
+                </div>
+            </div>
+            <div class="perk-footer">
+                <span class="perk-name">{{ perk.name }}</span>
+                <small class="perk-owner">{{ perk.survivorName }}</small>
+            </div>
+        </div>
+        }
+    </div>
+
+    <!-- 🔑 CONTROLES DE PAGINACIÓN -->
+    @if (totalPages > 1) {
+    <div class="pagination-controls" aria-label="Navegación de páginas">
+        <button class="page-btn prev-btn" (click)="prevPage()" [disabled]="currentPage === 1" aria-label="Página anterior">
+          <span class="blood-icon">&laquo;</span>
+        </button>
+
+        <div class="page-numbers">
+            @if (currentPage > 4) {
+            <button class="page-number" (click)="setPage(1)">1</button>
+            <span class="ellipsis">...</span> } @for (page of getPageNumbers(); track page) {
+            <button class="page-number {{ page === currentPage ? 'active' : '' }}" (click)="setPage(page)" [attr.aria-current]="page === currentPage ? 'page' : null">
+              {{ page }}
+            </button> } @if (currentPage
+            < totalPages - 3) { <span class="ellipsis">...</span>
+                <button class="page-number" (click)="setPage(totalPages)">{{ totalPages }}</button> }
+        </div>
+
+        <button class="page-btn next-btn" (click)="nextPage()" [disabled]="currentPage === totalPages" aria-label="Página siguiente">
+          <span class="blood-icon">&raquo;</span>
+        </button>
+    </div>
+    } }
+
+    <!-- MODAL DE DETALLES (sin cambios) -->
+    @if (isDetailOpen && selectedPerk) {
+    <div class="perk-overlay active" (click)="closePerkDetails()"></div>
+    <div class="perk-modal active">
+        <!-- ... contenido existente del modal ... -->
+    </div>
+    }
+</div>

@@ -1,0 +1,743 @@
+/* ============================================
+   DBD PERKS - ESTILOS MEJORADOS (Adaptado)
+   Fusión de tu CSS actual + mejoras
+   ============================================ */
+
+
+/* CONTENEDOR PRINCIPAL (Manteniendo tu estructura) */
+
+.perks-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    position: relative;
+    z-index: 5;
+}
+
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.4;
+}
+
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.perks-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.blood-dash {
+    display: inline-block;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, #8B0000, #DC143C);
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+
+/* ============================================
+   CONTROLES (BUSCADOR + FILTROS) - NUEVO
+   ============================================ */
+
+.perks-controls {
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+}
+
+.search-box {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1rem 3rem 1rem 1.5rem;
+    background: rgba(20, 20, 30, 0.9);
+    border: 2px solid #601c7a;
+    /* Tu color púrpura */
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    box-shadow: 0 0 20px rgba(96, 28, 122, 0.5);
+}
+
+.search-input::placeholder {
+    color: #888;
+}
+
+.clear-search {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #601c7a;
+    border: none;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+
+.clear-search:hover {
+    background: #8B0000;
+    transform: translateY(-50%) scale(1.1);
+}
+
+
+/* ============================================
+   GRID DE PERKS - MEJORADO CON DIAMANTES
+   ============================================ */
+
+.perks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .perks-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+
+/* ============================================
+   PERK CARD - DISEÑO DIAMANTE DBD
+   ============================================ */
+
+.perk-card {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    background: transparent;
+    border: none;
+    padding: 1.5em;
+}
+
+.perk-card:hover {
+    transform: translateY(-8px);
+}
+
+
+/* Marco diamante/hexagonal */
+
+.perk-diamond-frame {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    margin-bottom: 0.75rem;
+}
+
+.diamond-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    height: 90%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: rgba(10, 10, 10, 0.95);
+    border: 3px solid;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.perk-card:hover .diamond-inner {
+    transform: translate(-50%, -50%) rotate(45deg) scale(1.05);
+    background: rgba(25, 10, 35, 0.95);
+}
+
+
+/* Colores de borde según rareza */
+
+.rarity-common .diamond-inner {
+    border-color: #8B7355;
+    box-shadow: 0 0 20px rgba(139, 115, 85, 0.4);
+}
+
+.rarity-uncommon .diamond-inner {
+    border-color: #FFD700;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+}
+
+.rarity-rare .diamond-inner {
+    border-color: #32CD32;
+    box-shadow: 0 0 30px rgba(50, 205, 50, 0.6);
+}
+
+.rarity-teachable .diamond-inner {
+    border-color: #601c7a;
+    box-shadow: 0 0 30px rgba(96, 28, 122, 0.6);
+}
+
+
+/* Icono de la perk */
+
+.perk-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 110%;
+    height: 110%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    object-fit: cover;
+    filter: brightness(0.9) contrast(1.1);
+    transition: all 0.3s ease;
+}
+
+.perk-card:hover .perk-icon {
+    filter: brightness(1.1) contrast(1.2);
+}
+
+
+/* COMPATIBILIDAD: Manteniendo tu clase .perk-img */
+
+.perk-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 110%;
+    height: 110%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    object-fit: cover;
+    filter: brightness(0.9) contrast(1.1);
+    transition: all 0.3s ease;
+}
+
+
+/* Efectos de brillo */
+
+.perk-shine {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient( 45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    transform: rotate(-45deg);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.perk-card:hover .perk-shine {
+    opacity: 1;
+}
+
+.perk-glow-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 80%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(96, 28, 122, 0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.perk-card:hover .perk-glow-effect {
+    opacity: 1;
+}
+
+
+/* Nombre de la perk */
+
+.perk-name-label {
+    text-align: center;
+    min-height: 2.5rem;
+}
+
+.perk-name-text {
+    padding-top: 1em;
+    display: block;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+
+/* COMPATIBILIDAD: Manteniendo tus clases actuales */
+
+.perk-footer {
+    text-align: center;
+    padding: 0;
+    margin-top: 2em;
+}
+
+.perk-name {
+    display: block;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.perk-owner {
+    color: #888;
+    font-size: 0.7rem;
+    display: block;
+    margin-top: 0.25rem;
+}
+
+
+/* Indicador de rareza (pip) */
+
+.rarity-pip {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #888;
+    z-index: 10;
+}
+
+.rarity-common .rarity-pip {
+    background: #8B7355;
+    box-shadow: 0 0 8px rgba(139, 115, 85, 0.6);
+}
+
+.rarity-uncommon .rarity-pip {
+    background: #FFD700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+}
+
+.rarity-rare .rarity-pip {
+    background: #32CD32;
+    box-shadow: 0 0 12px rgba(50, 205, 50, 0.8);
+}
+
+.rarity-teachable .rarity-pip {
+    background: #601c7a;
+    box-shadow: 0 0 12px rgba(96, 28, 122, 0.8);
+}
+
+
+/* ============================================
+   MENSAJE SIN RESULTADOS
+   ============================================ */
+
+.no-results {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: #888;
+}
+
+.no-results i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.no-results p {
+    font-size: 1.2rem;
+}
+
+
+/* ============================================
+   MODAL DE DETALLES (Adaptando tu modal actual)
+   ============================================ */
+
+.perk-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.perk-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.perk-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: #0d0d0d;
+    border: 3px solid #601c7a;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 650px;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(96, 28, 122, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.perk-modal.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.perk-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 2rem;
+    border-bottom: 2px solid rgba(96, 28, 122, 0.3);
+}
+
+.title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.modal-perk-icon {
+    position: relative;
+}
+
+.modal-perk-icon .diamond-small {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    transform: rotate(45deg);
+    background: rgba(10, 10, 10, 0.95);
+    border: 3px solid #601c7a;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(96, 28, 122, 0.5);
+}
+
+.modal-perk-icon .diamond-small img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 110%;
+    height: 110%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    object-fit: cover;
+}
+
+.title-wrap h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+.badge-teachable {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background: rgba(96, 28, 122, 0.3);
+    border: 1px solid #601c7a;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: #ddd;
+    margin-top: 0.5rem;
+}
+
+.close-btn {
+    background: rgba(96, 28, 122, 0.8);
+    border: 2px solid #601c7a;
+    color: white;
+    font-size: 2rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    background: #8B0000;
+    border-color: #8B0000;
+    transform: rotate(90deg);
+}
+
+.perk-modal-body {
+    padding: 2rem;
+}
+
+.desc-box {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #601c7a;
+    margin-bottom: 1.5rem;
+}
+
+.desc-title {
+    color: #601c7a;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.desc-text {
+    color: #ddd;
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+.rarity-badge-container {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.rarity-badge {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.rarity-badge.rarity-common {
+    background: rgba(139, 115, 85, 0.3);
+    border: 2px solid #8B7355;
+    color: #D4AF85;
+}
+
+.rarity-badge.rarity-uncommon {
+    background: rgba(255, 215, 0, 0.2);
+    border: 2px solid #FFD700;
+    color: #FFE87C;
+}
+
+.rarity-badge.rarity-rare {
+    background: rgba(50, 205, 50, 0.2);
+    border: 2px solid #32CD32;
+    color: #90EE90;
+}
+
+.rarity-badge.rarity-teachable {
+    background: rgba(96, 28, 122, 0.3);
+    border: 2px solid #601c7a;
+    color: #DDA0DD;
+}
+
+.perk-meta {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+}
+
+.perk-meta span {
+    color: #aaa;
+    font-size: 0.95rem;
+}
+
+.perk-meta strong {
+    color: #fff;
+}
+
+
+/* ============================================
+   LOADER
+   ============================================ */
+
+.loader-container {
+    text-align: center;
+    padding: 5rem 2rem;
+}
+
+.loader-container .spinner-border {
+    width: 4rem;
+    height: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.loader-container p {
+    color: #888;
+    font-size: 1.2rem;
+}
+
+
+/* ============================================
+   SCROLLBAR PERSONALIZADA
+   ============================================ */
+
+.perk-modal::-webkit-scrollbar {
+    width: 10px;
+}
+
+.perk-modal::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.perk-modal::-webkit-scrollbar-thumb {
+    background: #601c7a;
+    border-radius: 5px;
+}
+
+.perk-modal::-webkit-scrollbar-thumb:hover {
+    background: #8B0000;
+}
+
+
+/* ============================================
+    PAGINACIÓN - ESTILO ENTIDAD (DBD)
+   ============================================ */
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 4rem;
+    padding: 2rem;
+    border-radius: 0 0 15px 15px;
+}
+
+
+/* Botones de Navegación (Prev/Next) */
+
+.page-btn {
+    background: rgba(20, 20, 25, 0.9);
+    border: 2px solid #601c7a;
+    color: #fff;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 10px rgba(96, 28, 122, 0.2);
+}
+
+.page-btn:hover:not(:disabled) {
+    background: #601c7a;
+    box-shadow: 0 0 20px rgba(96, 28, 122, 0.6);
+    transform: scale(1.1);
+}
+
+.page-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    border-color: #444;
+}
+
+.blood-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    font-family: serif;
+    /* Para que las flechas se vean más góticas */
+}
+
+
+/* Números de Página */
+
+.page-numbers {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.page-number {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #888;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 40px;
+}
+
+.page-number:hover {
+    color: #fff;
+    border-color: #601c7a;
+    background: rgba(96, 28, 122, 0.1);
+}
+
+.page-number.active {
+    background: #601c7a;
+    border-color: #601c7a;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(96, 28, 122, 0.5);
+    transform: translateY(-3px);
+    position: relative;
+}
+
+
+/* Efecto de "Glow" para la página activa */
+
+.page-number.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 10%;
+    width: 80%;
+    height: 2px;
+}
+
+
+/* Puntos suspensivos (Ellipsis) */
+
+.ellipsis {
+    color: #444;
+    padding: 0 0.5rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+
+/* Adaptabilidad móvil */
+
+@media (max-width: 600px) {
+    .pagination-controls {
+        gap: 0.5rem;
+        padding: 1rem;
+    }
+    .page-number {
+        padding: 0.4rem 0.7rem;
+        min-width: 35px;
+        font-size: 0.9rem;
+    }
+    /* Ocultar números extra en móvil si es necesario */
+    .page-numbers button:not(.active) {
+        display: none;
+    }
+    .page-numbers button.active,
+    .page-numbers .ellipsis:first-of-type,
+    .page-numbers button:first-child,
+    .page-numbers button:last-child {
+        display: block;
+    }
+}
