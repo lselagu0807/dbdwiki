@@ -1,61 +1,67 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+// Añadimos catchError y of para manejar los fallos individuales
+import { Observable, map, forkJoin, switchMap, catchError, of } from 'rxjs';
+import { Perk } from '../models/survivor-perks';
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class Service {
-  private url = "https://cyberluis.com/dba/api";
+    private url = "https://cyberluis.com/dba/api";
 
-  private survivors = [];
+    constructor(private http: HttpClient) { }
 
-  constructor(private http: HttpClient) { }
+    getSurvivors(): Observable<any[]> {
+        return this.http.get<any>(this.url + "/survivor").pipe(
+            map(res => res.data || [])
+        );
+    }
 
-  getSurvivors(): Observable<any[]> {
-    return this.http.get<any>(this.url + "/survivor").pipe(
-      map(res => res.data || []) // <--- Esto extrae los 31 supervivientes
-    );
-  }
+    // Modificado para atrapar errores 404
+    getSurvivorPerksByCode(code: string): Observable<any[]> {
+        return this.http.get<any>(`${this.url}/survivor/${code}/perk`).pipe(
+            map(res => res.data || []),
+            catchError(error => {
+                // Si la Nancy (o cualquier otro) da 404, devolvemos array vacío
+                console.warn(`Error 404 en perks de: ${code}. Saltando...`);
+                return of([]);
+            })
+        );
+    }
 
-  getSurvivorPerksByCode(code: string): Observable<any[]> {
-    // Usamos la ruta que aparece en tu captura para ir directo al grano
-    return this.http.get<any>(`${this.url}/survivor/${code}/perk`).pipe(
-      map(res => {
-        // Según tu captura, los datos vienen dentro de 'data'
-        return res.data || [];
-      })
-    );
-  }
+    getAllSurvivorPerks(): Observable<Perk[]> {
+        return this.getSurvivors().pipe(
+            switchMap(survivors => {
+                const requests = survivors.map(s => this.getSurvivorPerksByCode(s.code));
+                return forkJoin(requests);
+            }),
+            map(allPerksArrays => {
+                return allPerksArrays.flat();
+            })
+        );
+    }
 
+    // También lo aplicamos a los Killers por si acaso ocurre lo mismo
+    getKillerPerksByCode(code: string): Observable<any[]> {
+        return this.http.get<any>(`${this.url}/killer/${code}/perk`).pipe(
+            map(res => res.data || []),
+            catchError(() => of([]))
+        );
+    }
 
-  getKillers(): Observable<any[]> {
-    return this.http.get<any[]>(this.url + "/killer");
-  }
+    getKillers(): Observable<any[]> {
+        return this.http.get<any[]>(this.url + "/killer");
+    }
 
-  getKillerPerksByCode(code: string): Observable<any[]> {
-    // Usamos la ruta que aparece en tu captura para ir directo al grano
-    return this.http.get<any>(`${this.url}/killer/${code}/perk`).pipe(
-      map(res => {
-        // Según tu captura, los datos vienen dentro de 'data'
-        return res.data || [];
-      })
-    );
-  }
+    getItems(): Observable<any[]> {
+        return this.http.get<any[]>(this.url + "/item");
+    }
 
-  getItems(): Observable<any[]> {
-    return this.http.get<any[]>(this.url + "/item");
-  }
-
-  getAddonsByItemCode(itemCode: string): Observable<any[]> {
-    // Siguiendo la estructura de tu API: /item/{code}/addon
-    return this.http.get<any>(`${this.url}/item/${itemCode}/addon`).pipe(
-      map(res => {
-        // Accedemos a 'data' que es donde viene el array de addons en tus JSON
-        // Si no hay datos, devolvemos un array vacío para que no pete el *ngFor
-        return res.data || [];
-      })
-    );
-  }
-
+    getAddonsByItemCode(itemCode: string): Observable<any[]> {
+        return this.http.get<any>(`${this.url}/item/${itemCode}/addon`).pipe(
+            map(res => res.data || []),
+            catchError(() => of([]))
+        );
+    }
 }
