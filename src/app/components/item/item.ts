@@ -9,10 +9,11 @@ import { LoadingService } from '../../services/loading';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './item.html',
-  styleUrl: './item.css',
+  styleUrls: ['./item.css'],
 })
 export class Item implements OnInit {
   items: DbdItem[] = [];
+  currentIndex = 0;
   selectedItem: DbdItem | null = null;
   itemAddons: any[] = [];
 
@@ -27,7 +28,6 @@ export class Item implements OnInit {
 
   ngOnInit() {
     this.fetchItems();
-    console.log("a");
   }
 
   fetchItems() {
@@ -45,6 +45,29 @@ export class Item implements OnInit {
     });
   }
 
+  get visibleItems() {
+    if (!this.items || this.items.length === 0) return [];
+
+    const result = [];
+    for (let i = -2; i <= 2; i++) {
+      let idx = (this.currentIndex + i) % this.items.length;
+      if (idx < 0) idx += this.items.length;
+
+      if (this.items[idx]) {
+        result.push({
+          data: this.items[idx],
+          position: i
+        });
+      }
+    }
+    return result;
+  }
+
+  rotate(direction: number) {
+    if (this.isDetailView) return;
+    this.currentIndex = (this.currentIndex + direction + this.items.length) % this.items.length;
+  }
+
   openDetail(item: DbdItem) {
     this.selectedItem = item;
     this.isDetailView = true;
@@ -52,7 +75,6 @@ export class Item implements OnInit {
     this.itemAddons = [];
     this.cd.detectChanges();
 
-    // Llamamos al método que ya tienes en el Service para buscar addons
     this.dbdService.getAddonsByItemCode(item.type).subscribe({
       next: (addons) => {
         this.itemAddons = addons;
@@ -74,6 +96,25 @@ export class Item implements OnInit {
       this.itemAddons = [];
       this.cd.detectChanges();
     }, 400);
+  }
+
+  getTransform(position: number) {
+    const angle = (position * 35);
+    const radiusX = 250;
+    const radiusY = 80;
+
+    const rad = (angle + 90) * (Math.PI / 180);
+    const x = Math.cos(rad) * radiusX;
+    const y = Math.sin(rad) * radiusY;
+
+    const scale = position === 0 ? 1.2 : 1 - Math.abs(position) * 0.15;
+    const zIndex = 10 - Math.abs(position);
+
+    return {
+      'transform': `translate(${x}px, ${y}px) scale(${scale})`,
+      'z-index': zIndex,
+      'filter': position === 0 ? 'brightness(1.1)' : 'brightness(0.4)'
+    };
   }
 
   getRarityClass(rarity: string): string {

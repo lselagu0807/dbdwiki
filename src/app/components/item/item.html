@@ -1,72 +1,98 @@
-<img src="assets/video/bg-survivors.gif" id="bg-video" alt="DBD Background">
+<div class="fondo">
+    <div class="dbd-section-container" [class.detail-active]="isDetailView">
+        
+        <div class="section-header" [class.hidden]="isDetailView">
+            <h2 class="text-white text-uppercase fw-bold">Equipo de Supervivencia</h2>
+            <p class="text-secondary">Objetos disponibles en la Niebla</p>
+        </div>
 
-<div class="items-section-container">
-    <div class="section-header">
-        <h2 class="text-white text-uppercase fw-bold"><span></span> Equipo de Supervivencia</h2>
-        <p class="text-secondary">Objetos disponibles en la Niebla</p>
-    </div>
-
-    @if (items && items.length > 0) {
-    <div class="items-grid">
-        @for (item of items; track item.code) {
-        <div class="item-card" [class]="getRarityClass(item.rarity)" (click)="openDetail(item)">
-            <div class="item-icon-wrapper">
-                <img [src]="item.icon" [alt]="item.name" class="item-icon">
-                <div class="rarity-glow"></div>
+        @if (items && items.length > 0) {
+        <div class="items-grid" [class.shifted]="isDetailView">
+            @for (item of items; track item.code) {
+            <div class="item-card" 
+                 [class]="getRarityClass(item.rarity)" 
+                 [class.selected]="selectedItem?.code === item.code"
+                 (click)="openDetail(item)">
+                
+                <div class="item-icon-wrapper">
+                    <img [src]="item.icon" [alt]="item.name" class="item-icon">
+                    <div class="rarity-glow"></div>
+                </div>
+                
+                <div class="item-info-footer">
+                    <span class="item-name">{{ item.name }}</span>
+                    <small class="item-type-label">{{ item.type }}</small>
+                </div>
             </div>
-            <div class="item-info-footer">
-                <span class="item-name">{{ item.name }}</span>
-                <small class="item-type-label">{{ item.type }}</small>
+            }
+        </div>
+        } @else {
+        <div class="d-flex justify-content-center align-items-center p-5">
+            <div class="spinner-border text-danger" role="status"></div>
+        </div>
+        }
+
+        @if (isDetailView) {
+        <div class="detail-overlay" (click)="closeDetail()"></div>
+        }
+
+        @if (selectedItem) {
+        <div class="detail-modal" [class.active]="isDetailView">
+            
+            <div class="modal-header">
+                <div class="survivor-title">
+                    <h2 class="text-white text-uppercase mb-1">{{ selectedItem.name }}</h2>
+                    <p class="text-secondary mb-2">{{ selectedItem.type }}</p>
+                    <div class="survivor-badges">
+                        <span class="badge-custom" [class]="getRarityClass(selectedItem.rarity)">
+                            {{ selectedItem.rarity }}
+                        </span>
+                    </div>
+                </div>
+                
+                <button class="btn-close-modal mt-2 me-3" (click)="closeDetail()">
+                    <span>&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="info-section">
+                    <h5 class="section-title">
+                        <span class="title-icon">📖</span> Descripción
+                    </h5>
+                    <p class="section-content description-text">{{ selectedItem.description }}</p>
+                </div>
+
+                <div class="info-section">
+                    <h5 class="section-title">
+                        <span class="title-icon">🛠️</span> Accesorios Disponibles
+                    </h5>
+
+                    @if (isLoadingAddons) {
+                    <div class="loading-perks d-flex align-items-center">
+                        <div class="spinner-border spinner-border-sm text-danger" role="status"></div>
+                        <span class="text-white-50 ms-2">Buscando accesorios...</span>
+                    </div>
+                    } @else if (itemAddons && itemAddons.length > 0) {
+                    <div class="perks-container">
+                        @for (addon of itemAddons; track addon.name) {
+                        <div class="perk-box">
+                            <div class="perk-image">
+                                <img [src]="addon.icon" [alt]="addon.name">
+                            </div>
+                            <div class="perk-details">
+                                <h6 class="perk-name">{{ addon.name }}</h6>
+                                <p class="perk-description">{{ addon.description }}</p>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                    } @else {
+                    <p class="text-white-50">No hay accesorios para este objeto.</p>
+                    }
+                </div>
             </div>
         </div>
         }
     </div>
-    } @else {
-    <div class="text-center p-5">
-        <div class="spinner-border text-danger" role="status"></div>
-    </div>
-    } @if (isDetailView && selectedItem) {
-    <div class="detail-overlay active" (click)="closeDetail()"></div>
-    <div class="detail-modal active">
-        <div class="modal-header">
-            <div class="survivor-title">
-                <h2 class="text-white text-uppercase mb-1">{{ selectedItem.name }}</h2>
-                <span class="badge-custom" [class]="getRarityClass(selectedItem.rarity)">
-                    {{ selectedItem.rarity }}
-                </span>
-            </div>
-            <button class="btn-close-modal" (click)="closeDetail()">&times;</button>
-        </div>
-
-        <div class="modal-body">
-            <div class="info-section">
-                <h5 class="section-title"></h5>
-                <p class="section-content description-text">{{ selectedItem.description }}</p>
-            </div>
-
-            <div class="info-section">
-                <h5 class="section-title"></h5>
-                @if (isLoadingAddons) {
-                <div class="spinner-border spinner-border-sm text-danger"></div>
-                } @else if (itemAddons.length > 0) {
-                <div class="perks-container">
-                    @for (addon of itemAddons; track addon.name) {
-                    <div class="perk-box">
-                        <div class="perk-image">
-                            <img [src]="addon.icon" [alt]="addon.name">
-                        </div>
-                        <div class="perk-details">
-                            <h6 class="perk-name">{{ addon.name }}</h6>
-                            <p class="perk-description">{{ addon.description }}</p>
-                        </div>
-                    </div>
-                    }
-                </div>
-                } @else {
-                <p class="text-white-50">No hay accesorios para este objeto.</p>
-                }
-            </div>
-        </div>
-    </div>
-    }
 </div>
