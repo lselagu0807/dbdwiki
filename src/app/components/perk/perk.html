@@ -70,11 +70,43 @@
     </div>
     } }
 
-    <!-- MODAL DE DETALLES (sin cambios) -->
+    <!-- MODAL DE DETALLES -->
     @if (isDetailOpen && selectedPerk) {
     <div class="perk-overlay active" (click)="closePerkDetails()"></div>
     <div class="perk-modal active">
-        <!-- ... contenido existente del modal ... -->
+
+        <div class="perk-modal-header">
+            <div class="title-wrap">
+                <div class="modal-perk-icon">
+                    <div class="diamond-small">
+                        <img [src]="selectedPerk.icon" [alt]="selectedPerk.name">
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-uppercase">{{ selectedPerk.name }}</h2>
+                    <span class="badge-teachable">{{ selectedPerk.survivorName }}</span>
+                </div>
+            </div>
+            <button class="close-btn" (click)="closePerkDetails()" aria-label="Cerrar">&times;</button>
+        </div>
+
+        <div class="perk-modal-body">
+
+            <div class="rarity-badge-container">
+                <span class="rarity-badge rarity-teachable">Teachable Perk</span>
+            </div>
+
+            <div class="desc-box">
+                <p class="desc-title">⚡ Descripción</p>
+                <p class="desc-text">{{ selectedPerk.description }}</p>
+            </div>
+
+            <div class="perk-meta">
+                <span><strong>Survivor:</strong> {{ selectedPerk.survivorName }}</span>
+                
+            </div>
+
+        </div>
     </div>
     }
 </div>
