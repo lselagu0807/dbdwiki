@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
+.fondo {
+    background-image: url("/assets/video/bg-survivors.gif");
+    background-repeat: no-repeat;
+    /* Cambiado a no-repeat para que no se duplique */
+    background-size: 100% 100%;
+    /* Cubre todo el área sin estirarse mal */
+    background-attachment: fixed;
+    /* ESTA ES LA CLAVE: la imagen no se mueve */
+    position: relative;
+    z-index: 4;
+    overflow: hidden;
+}
+
 /* Contenedor alineado con el estilo del carrusel */
 
 .items-section-container {
@@ -160,7 +173,7 @@
 /* REUTILIZACIÓN DE TUS CLASES DE MODAL */
 
 
-/* Se asume que las clases .detail-modal, .modal-header, .perk-box, etc., 
+/* Se asume que las clases .detail-modal, .modal-header, .perk-box, etc.,
    ya están en un archivo global o se copian aquí para que funcionen */
 
 @media (max-width: 768px) {
@@ -168,6 +181,7 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
     }
+
     .item-icon {
         width: 70px;
         height: 70px;
