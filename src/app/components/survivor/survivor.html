@@ -5,7 +5,9 @@
         <!-- CARRUSEL -->
         <div class="arc-viewport " [class.shifted]="isDetailView ">
             @for (item of visibleSurvivors; track item.data.code) {
-            <div class="survivor-item " [ngStyle]="getTransform(item.position) " [class.is-center]="item.position===0 " [class.is-selected]="isDetailView && item.position===0 " (click)="item.position===0 && !isDetailView ? openDetail(item.data) : rotate(item.position) ">
+            <div class="survivor-item " [ngStyle]="getTransform(item.position) " [class.is-center]="item.position===0 "
+                [class.is-selected]="isDetailView && item.position===0 "
+                (click)="item.position===0 && !isDetailView ? openDetail(item.data) : rotate(item.position) ">
 
                 <div class="portrait-wrapper shadow ">
                     <img [src]="item.data.imgs.store " class="img-fluid " [alt]="item.data.name ">
@@ -41,13 +43,14 @@
                     <p class="text-secondary mb-2 ">{{ selectedSurvivor.role }}</p>
                     <div class="survivor-badges ">
                         <span class="badge-custom bg-danger ">{{ selectedSurvivor.difficulty }}</span>
-                        <span class="badge-custom bg-secondary ">{{ selectedSurvivor.nationality }}</span> @if (selectedSurvivor.licensed) {
+                        <span class="badge-custom bg-secondary ">{{ selectedSurvivor.nationality }}</span> @if
+                        (selectedSurvivor.licensed) {
                         <span class="badge-custom bg-warning ">De licencia</span> }
                     </div>
                 </div>
                 <button class="btn-close-modal " (click)="closeDetail() ">
-        <span>&times;</span>
-      </button>
+                    <span>&times;</span>
+                </button>
             </div>
 
             <div class="modal-body ">
