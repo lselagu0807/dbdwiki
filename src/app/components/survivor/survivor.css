@@ -1,19 +1,16 @@
 /* Importar fuente Roboto */
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
 .fondo {
     background-image: url("/assets/video/bg-survivors.gif");
     background-repeat: no-repeat;
-    /* Cambiado a no-repeat para que no se duplique */
     background-size: 100% 100%;
-    /* Cubre todo el área sin estirarse mal */
     background-attachment: fixed;
-    /* ESTA ES LA CLAVE: la imagen no se mueve */
     position: relative;
     z-index: 4;
     overflow: hidden;
 }
-
 
 /* 1. Contenedor principal */
 
@@ -31,7 +28,6 @@
     font-family: 'Roboto', sans-serif;
 }
 
-
 /* 2. El área del arco */
 
 .arc-viewport {
@@ -46,13 +42,9 @@
     transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-
-/* Desplazamiento del viewport cuando está en vista detallada */
-
 .arc-viewport.shifted {
     transform: translateX(-30%) scale(0.8);
 }
-
 
 /* 3. Los Personajes */
 
@@ -64,18 +56,12 @@
     z-index: 1;
 }
 
-
-/* Cuando el superviviente está seleccionado en vista detallada */
-
 .survivor-item.is-selected {
     transform: translateX(30px) translateY(100px) scale(1.6) !important;
     z-index: 200 !important;
     cursor: default;
     filter: none !important;
 }
-
-
-/* Wrapper de la imagen */
 
 .portrait-wrapper {
     width: 100%;
@@ -93,9 +79,6 @@
     transition: all 0.3s ease;
 }
 
-
-/* GLOW en la imagen del personaje central del carrusel */
-
 .survivor-item.is-center .portrait-wrapper img {
     filter: brightness(1.1) drop-shadow(0 0 15px rgb(45, 45, 45));
 }
@@ -105,13 +88,9 @@
     box-shadow: none !important;
 }
 
-
-/* Imágenes no centrales más oscuras */
-
 .survivor-item:not(.is-center):not(.is-selected) .portrait-wrapper img {
     filter: brightness(0.8);
 }
-
 
 /* 4. Información del superviviente */
 
@@ -147,7 +126,6 @@
     filter: none !important;
 }
 
-
 /* 5. NAVEGACIÓN */
 
 .navigation {
@@ -165,9 +143,6 @@
     opacity: 0;
     pointer-events: none;
 }
-
-
-/* Estilo de botones */
 
 .nav-btn,
 .btn-outline-light {
@@ -192,13 +167,9 @@
     transform: scale(1.1);
 }
 
-
 /* ========================================
-   OVERLAY Y VENTANA FLOTANTE - ESTILO DBD ORIGINAL
+   OVERLAY Y VENTANA FLOTANTE
    ======================================== */
-
-
-/* Overlay oscuro de fondo */
 
 .detail-overlay {
     position: fixed;
@@ -212,16 +183,9 @@
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
-
-
-/* Ventana modal flotante - Estilo DBD */
 
 .detail-modal {
     position: fixed;
@@ -244,9 +208,6 @@
 .detail-modal.active {
     right: 0;
 }
-
-
-/* Header del modal - Estilo DBD */
 
 .modal-header {
     background: linear-gradient(to bottom, rgba(139, 0, 0, 0.4), transparent);
@@ -305,9 +266,6 @@
     background: rgba(180, 140, 0, 0.6) !important;
 }
 
-
-/* Botón cerrar del modal - Estilo DBD */
-
 .btn-close-modal {
     position: absolute;
     top: 25px;
@@ -333,36 +291,16 @@
     transform: scale(1.1);
 }
 
-
-/* Body del modal */
-
 .modal-body {
     padding: 0;
     overflow-y: auto;
     flex: 1;
 }
 
-
-/* Scrollbar personalizada - Estilo DBD */
-
-.modal-body::-webkit-scrollbar {
-    width: 8px;
-}
-
-.modal-body::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.3);
-}
-
-.modal-body::-webkit-scrollbar-thumb {
-    background: rgba(139, 0, 0, 0.6);
-}
-
-.modal-body::-webkit-scrollbar-thumb:hover {
-    background: rgba(139, 0, 0, 0.8);
-}
-
-
-/* Secciones de información - Estilo DBD */
+.modal-body::-webkit-scrollbar { width: 8px; }
+.modal-body::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.3); }
+.modal-body::-webkit-scrollbar-thumb { background: rgba(139, 0, 0, 0.6); }
+.modal-body::-webkit-scrollbar-thumb:hover { background: rgba(139, 0, 0, 0.8); }
 
 .info-section {
     padding: 20px 30px;
@@ -384,9 +322,7 @@
     padding: 0;
 }
 
-.title-icon {
-    font-size: 1rem;
-}
+.title-icon { font-size: 1rem; }
 
 .section-content {
     font-family: 'Roboto', sans-serif;
@@ -396,9 +332,6 @@
     font-weight: 300;
     text-align: left;
 }
-
-
-/* Contenedor de perks - Estilo DBD */
 
 .perks-container {
     display: flex;
@@ -439,9 +372,7 @@
     object-fit: cover;
 }
 
-.perk-details {
-    flex: 1;
-}
+.perk-details { flex: 1; }
 
 .perk-name {
     font-family: 'Roboto', sans-serif;
@@ -470,62 +401,354 @@
 }
 
 
-/* Responsive */
+/* ========================================
+   CATÁLOGO DE PERKS — 2 FILAS × 6 COLUMNAS
+   (idéntico al de killers)
+   ======================================== */
+
+.perks-catalog-container {
+    width: 100%;
+    min-height: calc(100vh - 58px);
+    padding: 40px 20px 60px;
+    font-family: 'Roboto', sans-serif;
+    transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* Mismo fondo que .fondo */
+    background-image: url("/assets/video/bg-survivors.gif");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    position: relative;
+    z-index: 4;
+}
+
+.perks-catalog-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.perks-catalog-container h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 24px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* Buscador */
+.search-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.search-input {
+    width: 100%;
+    max-width: 500px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(139, 0, 0, 0.5);
+    color: #fff;
+    padding: 12px 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.search-input::placeholder { color: rgba(255, 255, 255, 0.3); }
+
+.search-input:focus {
+    border-color: rgba(139, 0, 0, 0.9);
+    box-shadow: 0 0 10px rgba(139, 0, 0, 0.3);
+}
+
+/* Grid: 6 columnas × 2 filas por página */
+.perks-diamond-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 40px 20px;
+    width: 100%;
+    max-width: 860px;
+    justify-items: center;
+}
+
+.perk-diamond-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.perk-diamond-item:hover {
+    transform: translateY(-5px);
+}
+
+.diamond-shape {
+    width: 64px;
+    height: 64px;
+    transform: rotate(45deg);
+    overflow: hidden;
+    border: 2px solid rgba(139, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.55);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    flex-shrink: 0;
+}
+
+.perk-diamond-item:hover .diamond-shape {
+    border-color: rgba(220, 53, 69, 0.9);
+    box-shadow: 0 0 14px rgba(220, 53, 69, 0.5);
+}
+
+.diamond-shape img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: rotate(-45deg) scale(1.42);
+    pointer-events: none;
+}
+
+.diamond-shape.small {
+    width: 56px;
+    height: 56px;
+}
+
+.perk-label-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2px;
+}
+
+.perk-name-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.perk-owner-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 300;
+    color: rgba(220, 53, 69, 0.95);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* Paginación */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+}
+
+.page-btn {
+    background: rgba(0, 0, 0, 0.65);
+    border: 1px solid rgba(139, 0, 0, 0.45);
+    color: rgba(255, 255, 255, 0.6);
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.page-btn:hover {
+    background: rgba(139, 0, 0, 0.35);
+    border-color: rgba(139, 0, 0, 0.85);
+    color: #fff;
+}
+
+.page-btn.active {
+    background: rgba(139, 0, 0, 0.75);
+    border-color: #8B0000;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(139, 0, 0, 0.55);
+}
+
+.page-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.page-info {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 6px;
+}
+
+/* Skeletons */
+.skeleton-diamond {
+    background: rgba(50, 50, 50, 0.8) !important;
+    border-color: rgba(80, 80, 80, 0.5) !important;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-text {
+    display: block;
+    height: 8px;
+    width: 60px;
+    background: rgba(50, 50, 50, 0.8);
+    border-radius: 2px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-text.small {
+    width: 44px;
+    height: 6px;
+    animation-delay: 0.2s;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50%       { opacity: 0.85; }
+}
+
+/* Modal detalle de perk */
+.perk-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.78);
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.2s ease forwards;
+}
+
+.perk-modal-overlay.closing {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+.perk-modal-content {
+    position: relative;
+    width: 420px;
+    max-width: 90vw;
+    background: linear-gradient(to bottom, rgba(30, 30, 30, 0.98), rgba(15, 15, 15, 0.98));
+    border: 1px solid rgba(139, 0, 0, 0.5);
+    border-top: 3px solid #8B0000;
+    padding: 30px;
+    font-family: 'Roboto', sans-serif;
+    animation: slideUp 0.25s ease forwards;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+}
+
+.btn-close-modal-perk {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 0;
+}
+
+.btn-close-modal-perk:hover { color: #fff; }
+
+.modal-perk-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 5px;
+}
+
+.modal-perk-header h4 {
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #fff;
+    margin: 0;
+}
+
+.perk-divider {
+    border-color: rgba(139, 0, 0, 0.4);
+    margin: 15px 0;
+}
+
+.modal-perk-body p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
 
 @media (max-width: 768px) {
-    .arc-viewport {
-        height: 400px;
+
+    /* Carrusel */
+    .arc-viewport { height: 400px; }
+    .arc-viewport.shifted { transform: translateX(-30%) scale(0.8); }
+    .survivor-item { width: 150px; }
+    .survivor-item.is-selected { transform: translateX(-150px) scale(1.4) !important; }
+    .survivor-info { bottom: -80px; width: 250px; }
+    .survivor-info h5 { font-size: 1.2rem; }
+    .navigation { margin-top: 130px; gap: 40px; }
+    .nav-btn, .btn-outline-light { padding: 10px 20px; font-size: 1.5rem; min-width: 50px; }
+    .detail-modal { width: 100%; right: -100%; }
+    .detail-modal.active { right: 0; }
+    .perk-image { width: 56px; height: 56px; }
+    .perk-name { font-size: 0.9rem; }
+    .perk-description { font-size: 0.8rem; }
+    .modal-header { padding: 20px; }
+    .survivor-title h2 { font-size: 1.6rem; }
+    .info-section { padding: 15px 20px; }
+
+    /* Catálogo: 3 columnas en móvil */
+    .perks-diamond-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px 12px;
+        max-width: 100%;
     }
-    .arc-viewport.shifted {
-        transform: translateX(-30%) scale(0.8);
-    }
-    .survivor-item {
-        width: 150px;
-    }
-    .survivor-item.is-selected {
-        transform: translateX(-150px) scale(1.4) !important;
-    }
-    .survivor-info {
-        bottom: -80px;
-        width: 250px;
-    }
-    .survivor-info h5 {
-        font-size: 1.2rem;
-    }
-    .navigation {
-        margin-top: 130px;
-        gap: 40px;
-    }
-    .nav-btn,
-    .btn-outline-light {
-        padding: 10px 20px;
-        font-size: 1.5rem;
-        min-width: 50px;
-    }
-    .detail-modal {
-        width: 100%;
-        right: -100%;
-    }
-    .detail-modal.active {
-        right: 0;
-    }
-    .perk-image {
-        width: 56px;
-        height: 56px;
-    }
-    .perk-name {
-        font-size: 0.9rem;
-    }
-    .perk-description {
-        font-size: 0.8rem;
-    }
-    .modal-header {
-        padding: 20px;
-    }
-    .survivor-title h2 {
-        font-size: 1.6rem;
-    }
-    .info-section {
-        padding: 15px 20px;
-    }
+
+    .diamond-shape { width: 52px; height: 52px; }
+    .perk-name-text { font-size: 0.62rem; }
+    .perk-owner-text { font-size: 0.58rem; }
+    .page-btn { width: 32px; height: 32px; font-size: 0.8rem; }
 }

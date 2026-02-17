@@ -1,133 +1,234 @@
-<img src="assets/video/bg-survivors.gif" id="bg-video" alt="DBD Background"> @if (killers && killers.length > 0) {
-<div class="dbd-carousel-container" [class.detail-active]="isDetailView">
+<div class="fondo">
+    <div class="killer-page">
 
-    <!-- CARRUSEL -->
-    <div class="arc-viewport" [class.shifted]="isDetailView">
-        @for (item of visibleKillers; track item.data.code) {
-        <div class="killer-item" [ngStyle]="getTransform(item.position)" [class.is-center]="item.position === 0" [class.is-selected]="isDetailView && item.position === 0" (click)="item.position === 0 && !isDetailView ? openDetail(item.data) : rotate(item.position)">
+        @if (killers && killers.length > 0) {
+        <div class="dbd-carousel-container" [class.detail-active]="isDetailView">
 
-            <div class="portrait-wrapper shadow">
-                <img [src]="item.data.imgs.store" class="img-fluid" [alt]="item.data.name">
-            </div>
+            <!-- ── CARRUSEL ── -->
+            <div class="arc-viewport" [class.shifted]="isDetailView">
+                @for (item of visibleKillers; track item.data.code) {
+                <div class="killer-item" [ngStyle]="getTransform(item.position)" [class.is-center]="item.position === 0"
+                    [class.is-selected]="isDetailView && item.position === 0"
+                    (click)="item.position === 0 && !isDetailView ? openDetail(item.data) : rotate(item.position)">
 
-            @if (item.position === 0 && !isDetailView) {
-            <div class="killer-info text-center mt-2">
-                <h5 class="text-white text-uppercase mb-0 fw-bold">{{ item.data.name }}</h5>
-                <small class="text-secondary">{{ item.data.power.powerName }}</small>
-            </div>
-            }
-        </div>
-        }
-    </div>
-
-    <!-- NAVEGACIÓN -->
-    <div class="navigation" [class.hidden]="isDetailView">
-        <button class="btn btn-outline-light btn-sm" (click)="rotate(1)">&#10094;</button>
-        <button class="btn btn-outline-light btn-sm" (click)="rotate(-1)">&#10095;</button>
-    </div>
-
-    <!-- OVERLAY OSCURO -->
-    @if (isDetailView) {
-    <div class="detail-overlay" (click)="closeDetail()"></div>
-    }
-
-    <!-- VENTANA FLOTANTE DE DETALLES -->
-    @if (selectedKiller) {
-    <div class="detail-modal" [class.active]="isDetailView">
-        <div class="modal-header">
-            <div class="killer-title">
-                <h2 class="text-white text-uppercase mb-1">{{ selectedKiller.name }}</h2>
-                <p class="text-secondary mb-1"><strong>{{ selectedKiller.fullName }}</strong></p>
-                <p class="text-secondary mb-2">{{ selectedKiller.power.powerName }}</p>
-                <div class="killer-badges">
-                    <span class="badge-custom bg-danger">{{ selectedKiller.difficulty }}</span>
-                    <span class="badge-custom bg-secondary">{{ selectedKiller.nationality }}</span> @if (selectedKiller.licensed) {
-                    <span class="badge-custom bg-warning">De licencia</span> }
-                </div>
-            </div>
-            <button class="btn-close-modal" (click)="closeDetail()">
-        <span>&times;</span>
-      </button>
-        </div>
-
-        <div class="modal-body">
-
-            <!-- RESUMEN -->
-            @if (selectedKiller.overview) {
-            <div class="info-section">
-                <h5 class="section-title">
-                    <span class="title-icon">📖</span> Resumen
-                </h5>
-                <p class="section-content">{{ selectedKiller.overview }}</p>
-            </div>
-            }
-
-            <!-- CARACTERÍSTICAS DEL KILLER -->
-            <div class="info-section">
-                <h5 class="section-title">
-                    <span class="title-icon">⚔️</span> Características
-                </h5>
-                <div class="characteristics-grid">
-                    <div class="characteristic-item">
-                        <span class="char-label">Arma:</span>
-                        <span class="char-value">{{ selectedKiller.weapon }}</span>
+                    <div class="portrait-wrapper shadow">
+                        <img [src]="item.data.imgs.store" class="img-fluid" [alt]="item.data.name">
                     </div>
-                    <div class="characteristic-item">
-                        <span class="char-label">Velocidad:</span>
-                        <span class="char-value">{{ selectedKiller.moveSpeed }}</span>
-                    </div>
-                    <div class="characteristic-item">
-                        <span class="char-label">Radio de Terror:</span>
-                        <span class="char-value">{{ selectedKiller.terrorRadius }}</span>
-                    </div>
-                    <div class="characteristic-item">
-                        <span class="char-label">Altura:</span>
-                        <span class="char-value">{{ selectedKiller.height }}</span>
-                    </div>
-                    <div class="characteristic-item">
-                        <span class="char-label">Tipo de Ataque:</span>
-                        <span class="char-value">{{ selectedKiller.powerAttackType }}</span>
-                    </div>
-                    <div class="characteristic-item">
-                        <span class="char-label">Reino:</span>
-                        <span class="char-value">{{ selectedKiller.realm }}</span>
-                    </div>
-                </div>
-            </div>
 
-            <!-- PERKS -->
-            <div class="info-section">
-                <h5 class="section-title">
-                    <span class="title-icon">⚡</span> Ventajas Únicas
-                </h5>
-
-                @if (isLoadingPerks) {
-                <div class="loading-perks">
-                    <div class="spinner-border spinner-border-sm text-danger" role="status"></div>
-                    <span class="text-white-50 ms-2">Cargando ventajas...</span>
-                </div>
-                } @else if (killerPerks && killerPerks.length > 0) {
-                <div class="perks-container">
-                    @for (perk of killerPerks; track perk.id) {
-                    <div class="perk-box">
-                        <div class="perk-image">
-                            <img [src]="perk.icon" [alt]="perk.name">
-                        </div>
-                        <div class="perk-details">
-                            <h6 class="perk-name">{{ perk.name }}</h6>
-                            <p class="perk-description">{{ perk.description }}</p>
-                        </div>
+                    @if (item.position === 0 && !isDetailView) {
+                    <div class="killer-info text-center mt-2">
+                        <h5 class="text-white text-uppercase mb-0 fw-bold">{{ item.data.name }}</h5>
+                        <small class="text-secondary">{{ item.data.power.powerName }}</small>
                     </div>
                     }
                 </div>
-                } @else {
-                <p class="text-white-50">No hay ventajas disponibles</p>
                 }
             </div>
 
-        </div>
-    </div>
-    }
+            <!-- ── NAVEGACIÓN ── -->
+            <div class="navigation" [class.hidden]="isDetailView">
+                <button class="btn btn-outline-light btn-sm" (click)="rotate(1)">&#10094;</button>
+                <button class="btn btn-outline-light btn-sm" (click)="rotate(-1)">&#10095;</button>
+            </div>
 
+            <!-- ── OVERLAY ── -->
+            @if (isDetailView) {
+            <div class="detail-overlay" (click)="closeDetail()"></div>
+            }
+
+            <!-- ── MODAL DETALLE KILLER ── -->
+            @if (selectedKiller) {
+            <div class="detail-modal" [class.active]="isDetailView">
+
+                <div class="modal-header">
+                    <div class="killer-title">
+                        <h2 class="text-white text-uppercase mb-1">{{ selectedKiller.name }}</h2>
+                        <p class="text-secondary mb-1"><strong>{{ selectedKiller.fullName }}</strong></p>
+                        <p class="text-secondary mb-2">{{ selectedKiller.power.powerName }}</p>
+                        <div class="killer-badges">
+                            <span class="badge-custom bg-danger">{{ selectedKiller.difficulty }}</span>
+                            <span class="badge-custom bg-secondary">{{ selectedKiller.nationality }}</span>
+                            @if (selectedKiller.licensed) {
+                            <span class="badge-custom bg-warning">De licencia</span>
+                            }
+                        </div>
+                    </div>
+                    <button class="btn-close-modal" (click)="closeDetail()"><span>&times;</span></button>
+                </div>
+
+                <div class="modal-body">
+
+                    @if (selectedKiller.overview) {
+                    <div class="info-section">
+                        <h5 class="section-title"><span class="title-icon">📖</span> Resumen</h5>
+                        <p class="section-content">{{ selectedKiller.overview }}</p>
+                    </div>
+                    }
+
+                    <div class="info-section">
+                        <h5 class="section-title"><span class="title-icon">⚔️</span> Características</h5>
+                        <div class="characteristics-grid">
+                            <div class="characteristic-item">
+                                <span class="char-label">Arma:</span>
+                                <span class="char-value">{{ selectedKiller.weapon }}</span>
+                            </div>
+                            <div class="characteristic-item">
+                                <span class="char-label">Velocidad:</span>
+                                <span class="char-value">{{ selectedKiller.moveSpeed }}</span>
+                            </div>
+                            <div class="characteristic-item">
+                                <span class="char-label">Radio de Terror:</span>
+                                <span class="char-value">{{ selectedKiller.terrorRadius }}</span>
+                            </div>
+                            <div class="characteristic-item">
+                                <span class="char-label">Altura:</span>
+                                <span class="char-value">{{ selectedKiller.height }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h5 class="section-title"><span class="title-icon">⚡</span> Ventajas Únicas</h5>
+
+                        @if (isLoadingPerks) {
+                        <div class="loading-perks">
+                            <div class="spinner-border spinner-border-sm text-danger" role="status"></div>
+                            <span class="text-white-50 ms-2">Cargando ventajas...</span>
+                        </div>
+                        } @else if (killerPerks && killerPerks.length > 0) {
+                        <div class="perks-container">
+                            @for (perk of killerPerks; track perk.id) {
+                            <div class="perk-box">
+                                <div class="perk-image">
+                                    <img [src]="perk.icon" [alt]="perk.name">
+                                </div>
+                                <div class="perk-details">
+                                    <h6 class="perk-name">{{ perk.name }}</h6>
+                                    <p class="perk-description" [innerHTML]="perk.description"></p>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                        } @else {
+                        <p class="text-white-50">No hay ventajas disponibles</p>
+                        }
+                    </div>
+
+                </div>
+            </div>
+            }
+
+        </div>
+
+        <!-- ══════════════════════════════════════════════
+       CATÁLOGO PAGINADO
+  ══════════════════════════════════════════════ -->
+        <div class="perks-catalog-container" [class.hidden]="isDetailView">
+            <h2 class="text-center text-uppercase mb-4">Perks de los Killers</h2>
+
+            <!-- Buscador conectado -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Buscar por perk, descripción o killer..."
+                    [value]="searchQuery" (input)="onSearch($any($event.target).value)">
+            </div>
+
+            @if (allPerks.length === 0) {
+            <!-- Skeletons de carga -->
+            <div class="perks-diamond-grid">
+                @for (s of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]; track s) {
+                <div class="perk-diamond-item">
+                    <div class="diamond-shape skeleton-diamond"></div>
+                    <div class="perk-label-container">
+                        <span class="skeleton-text"></span>
+                        <span class="skeleton-text small"></span>
+                    </div>
+                </div>
+                }
+            </div>
+
+            } @else if (filteredPerks.length === 0) {
+            <!-- Sin resultados -->
+            <div class="no-results">
+                <p>No se encontraron perks para <strong>"{{ searchQuery }}"</strong></p>
+            </div>
+
+            } @else {
+
+            <!-- Grid paginado -->
+            <div class="perks-diamond-grid">
+                @for (perk of pagedPerks; track $index) {
+                <div class="perk-diamond-item" (click)="openPerkModal(perk)">
+                    <div class="diamond-shape">
+                        <img [src]="perk.icon" [alt]="perk.name">
+                    </div>
+                    <div class="perk-label-container">
+                        <span class="perk-name-text">{{ perk.name }}</span>
+                        <small class="perk-owner-text">{{ perk.ownerName }}</small>
+                    </div>
+                </div>
+                }
+            </div>
+
+            <!-- Paginación — solo si hay más de una página -->
+            @if (totalPages > 1) {
+            <div class="pagination-container">
+
+                <button class="page-btn" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">
+                    &#10094;
+                </button>
+
+                @if (pageNumbers[0] > 1) {
+                <button class="page-btn" (click)="goToPage(1)">1</button>
+                @if (pageNumbers[0] > 2) {
+                <span class="page-info">…</span>
+                }
+                }
+
+                @for (page of pageNumbers; track page) {
+                <button class="page-btn" [class.active]="page === currentPage" (click)="goToPage(page)">
+                    {{ page }}
+                </button>
+                }
+
+                @if (pageNumbers[pageNumbers.length - 1] < totalPages) { @if (pageNumbers[pageNumbers.length - 1] <
+                    totalPages - 1) { <span class="page-info">…</span>
+                    }
+                    <button class="page-btn" (click)="goToPage(totalPages)">{{ totalPages }}</button>
+                    }
+
+                    <button class="page-btn" (click)="goToPage(currentPage + 1)"
+                        [disabled]="currentPage === totalPages">
+                        &#10095;
+                    </button>
+
+                    <span class="page-info">{{ currentPage }} / {{ totalPages }}</span>
+            </div>
+            }
+
+            }
+        </div>
+
+        <!-- ── MODAL DETALLE PERK ── -->
+        @if (showPerkModal) {
+        <div class="perk-modal-overlay" [class.closing]="isClosing" (click)="closePerkModal()">
+            <div class="perk-modal-content" (click)="$event.stopPropagation()">
+                <button class="btn-close-modal-perk" (click)="closePerkModal()">&times;</button>
+                <div class="modal-perk-header">
+                    <div class="diamond-shape small">
+                        <img [src]="selectedPerk?.icon" alt="">
+                    </div>
+                    <h4>{{ selectedPerk?.name }}</h4>
+                </div>
+                <hr class="perk-divider">
+                <div class="modal-perk-body">
+                    <p [innerHTML]="selectedPerk?.description"></p>
+                    <small class="perk-owner-text">{{ selectedPerk?.ownerName }}</small>
+                </div>
+            </div>
+        </div>
+        }
+
+        }
+
+    </div>
 </div>
-}
